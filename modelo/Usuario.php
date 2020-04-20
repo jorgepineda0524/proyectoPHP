@@ -3,10 +3,12 @@
 
         var $nomUsuario;
         var $contrasena;
+        var $tipoUsuario
 
-    function __construct($nomUsuario,$contrasena){
+    function __construct($nomUsuario,$contrasena,$tipoUsuario){
 	    $this->nomUsuario= $nomUsuario;
         $this->contrasena = $contrasena;	
+        $this->tipoUsuario = $tipoUsuario;
      }
 
 
@@ -24,6 +26,14 @@
 
     function setNomUsuario($nomUsuario) {
         $this->nomUsuario = $nomUsuario;
+    }
+
+    function getTipoUsuario() {
+        return $this->tipoUsuario;
+    }
+
+    function setTipoUsuario($tipoUsuario) {
+        $this->tipoUsuario = $tipoUsuario;
     }
 }
     

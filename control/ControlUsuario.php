@@ -1,6 +1,6 @@
 <?php
     class ControlUsuario{
-	var $objUsuario;
+	  var $objUsuario;
         function __construct($objUsuario){
          $this->objUsuario=$objUsuario;
 
@@ -8,7 +8,7 @@
 
        function  validarIngreso(){
             $esValido=false;
-            $objUsuario1 = new Usuario('','');
+            $objUsuario1 = new Usuario('','','');
 			$usu= $this->objUsuario->getNomUsuario();
 			$con=$this->objUsuario->getContrasena();
 			$objConexion = new ControlConexion();
@@ -18,26 +18,18 @@
 				$recordSet=$objConexion->ejecutarSelect($comandoSql);
 				$registro = $recordSet->fetch_array(MYSQLI_BOTH);
 				$objUsuario1->setNomUsuario($registro['usuario']);
-				$objUsuario1->setContrasena($registro['contrasena']);
-;
-                }
-         	catch (Exception $e)
-            	{
+        $objUsuario1->setContrasena($registro['contrasena']);
+        $objUsuario1->setTipoUsuario($registro['tipoUsuario']);
+      } catch (Exception $e){
             	echo "ERROR ".$e->getMessage()."\n";
-                }
-            $objConexion->cerrarBd();
+          }
+      $objConexion->cerrarBd();
 
-            if ($this->objUsuario->getNomUsuario()==$objUsuario1->getNomUsuario() &&
+      $esValido = $this->objUsuario->getNomUsuario()==$objUsuario1->getNomUsuario() &&
                $this->objUsuario->getContrasena()==$objUsuario1->getContrasena()  &&
                $this->objUsuario->getNomUsuario() != "" &&
-               $this->objUsuario->getContrasena() != "")
-			{
-              $esValido = true;
-            }
-            else
-            {
-              $esValido = false;
-            }
+               $this->objUsuario->getContrasena() != "";
+		
       return $esValido;
       }
  }
