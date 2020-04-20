@@ -9,6 +9,7 @@ class Cliente{
     var $email;
     var $telefono;
     var $credito;
+    
     function __construct($codigo,$nombre,$tipoCliente,$fechaRegistro,$imagen,$email,$telefono,$credito)
     {
         $this->codigo=$codigo;

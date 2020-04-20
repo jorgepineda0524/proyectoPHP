@@ -12,29 +12,14 @@
      }
 
 
-    function getContrasena() {
-        return $this->contrasena;
-    }
+    function getContrasena() {return $this->contrasena;}
+    function setContrasena($contrasena) {$this->contrasena = $contrasena;}
 
-    function setContrasena($contrasena) {
-        $this->contrasena = $contrasena;
-    }
+    function getNomUsuario() {return $this->nomUsuario;}
+    function setNomUsuario($nomUsuario) {$this->nomUsuario = $nomUsuario;}
 
-    function getNomUsuario() {
-        return $this->nomUsuario;
-    }
-
-    function setNomUsuario($nomUsuario) {
-        $this->nomUsuario = $nomUsuario;
-    }
-
-    function getTipoUsuario() {
-        return $this->tipoUsuario;
-    }
-
-    function setTipoUsuario($tipoUsuario) {
-        $this->tipoUsuario = $tipoUsuario;
-    }
+    function getTipoUsuario() {return $this->tipoUsuario;}
+    function setTipoUsuario($tipoUsuario) {$this->tipoUsuario = $tipoUsuario;}
 }
     
 ?>

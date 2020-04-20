@@ -9,23 +9,39 @@ class ControlCliente {
 	}
 
 	function guardar(){
-		$cod=$this->objCliente->getCodigo();
-		$nom=$this->objCliente->getNombre();
-		$cre=$this->objCliente->getCredito();
+		$codigo=$this->objCliente->getCodigo();
+		$nombre=$this->objCliente->getNombre();
+		$tipoCliente=$this->objCLiente->getTipoCliente();
+		$fechaRegistro=$this->objCliente->getFechaRegistro();
+		$imagen=$this->objCliente->getImagen();
+		$email=$this->objCliente->getEmail();
+		$telefono=$this->objCliente->getTelefono();
+		$credito=$this->objCliente->getCredito();
+
 		$objConexion = new ControlConexion();
 		$objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
-        $comandoSql="INSERT INTO CLIENTE(CODIGO,NOMBRE,CREDITO) VALUES('".$cod."','".$nom."',".$cre.")";
+        $comandoSql="INSERT INTO CLIENTE(CODIGO,NOMBRE,TIPOCLIENTE,FECHAREGISTRO,
+		IMAGEN,EMAIL,TELEFONO,CREDITO) VALUES('".$codigo."','".$nombre."','".$tipoCliente"',
+		'".$fechaRegistro"','".$imagen"','".$email"','".$telefono"','".$credito."')";
 		$objConexion->ejecutarComandoSql($comandoSql);
 		$objConexion->cerrarBd();
 	}
 
 	function modificar(){
-		$cod=$this->objCliente->getCodigo();
-		$nom=$this->objCliente->getNombre();
-		$cre=$this->objCliente->getCredito();
+		$codigo=$this->objCliente->getCodigo();
+		$nombre=$this->objCliente->getNombre();
+		$tipoCliente=$this->objCLiente->getTipoCliente();
+		$fechaRegistro=$this->objCliente->getFechaRegistro();
+		$imagen=$this->objCliente->getImagen();
+		$email=$this->objCliente->getEmail();
+		$telefono=$this->objCliente->getTelefono();
+		$credito=$this->objCliente->getCredito();
+
 		$objConexion = new ControlConexion();
 		$objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
-        $comandoSql="UPDATE CLIENTE SET NOMBRE='".$nom."',CREDITO=".$cre." WHERE CODIGO='".$cod."'";
+        $comandoSql="UPDATE CLIENTE SET NOMBRE='".$nombre."',TIPOCLIENTE='".$tipoCliente"',
+			FECHAREGISTRO='".$fechaRegistro"',IMAGEN='".$imagen"',EMAIL='".$email"',
+			TELEFONO='".$telefono"',CREDITO='".$credito."' WHERE CODIGO='".$codigo."'";
 		$objConexion->ejecutarComandoSql($comandoSql);
 		$objConexion->cerrarBd();
 	}
@@ -46,7 +62,12 @@ class ControlCliente {
 		$comandoSql="SELECT * FROM CLIENTE  WHERE CODIGO='".$cod."'";
 		$recordSet=$objConexion->ejecutarSelect($comandoSql);
 		$registro = $recordSet->fetch_array(MYSQLI_BOTH);
-        $this->objCliente->setNombre($registro["nombre"]);
+		$this->objCliente->setNombre($registro["nombre"]);
+		$this->objCliente->setTipoCliente($registro["tipoCliente"]);
+		$this->objCliente->setFechaRegistro($registro["fechaRegistro"]);
+		$this->objCliente->setImagen($registro["imagen"]);
+		$this->objCliente->setEmail($registro["email"]);
+		$this->objCliente->setTelefono($registro["telefono"]);
         $this->objCliente->setCredito($registro["credito"]);
 		$objConexion->cerrarBd();
 		return $this->objCliente;
