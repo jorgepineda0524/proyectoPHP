@@ -17,9 +17,10 @@ try{
         if($objCtrUsuario->validarIngreso()){
             $_SESSION['Usu']=  $usu;
             $_SESSION['Con']=  $con;
+            $_SESSION['per']=  $objUsuario->getTipoUsuario();
             header('Location: vista/menu.php');
-        }
-        else{
+        
+          }else{
             echo "<script>alert('Usuario y/o contraseña incorrectos');</script>";
         }
     }
@@ -27,7 +28,7 @@ try{
 catch (Exception $objExp) {
     echo 'Se presentó una excepción: ',  $objExp->getMessage(), "\n";
 }
-echo "<script>alert('Usuario = invitado  Contraseña= invitado');</script>";
+
 echo "
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet' id='bootstrap-css'>
 <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>

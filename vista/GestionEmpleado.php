@@ -12,7 +12,7 @@ function redireccionar(url)
 }
 </script>
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="styleGestion.css">
 
 
 <div class="container register">

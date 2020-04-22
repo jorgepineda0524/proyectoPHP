@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 28-03-2020 a las 22:06:12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 22-04-2020 a las 04:08:46
 -- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.3
+-- Versión de PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bdproyectoaulav1`
+-- Base de datos: `bdproyectoaula`
 --
 
 -- --------------------------------------------------------
@@ -30,8 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cliente` (
   `nombre` varchar(45) NOT NULL,
-  `codigo` varchar(45) NOT NULL,
-  `documento` varchar(45) DEFAULT NULL,
+  `documento` varchar(45) NOT NULL,
   `tipo` varchar(45) NOT NULL,
   `fecha_registro` date NOT NULL,
   `fecha_inactivo` date DEFAULT NULL,
@@ -53,7 +51,7 @@ CREATE TABLE `empleado` (
   `fecha_ingreso` date NOT NULL,
   `fecha_retiro` varchar(45) DEFAULT NULL,
   `salario_basico` varchar(45) NOT NULL,
-  `deducion` double NOT NULL,
+  `deduccion` double NOT NULL,
   `foto` varchar(100) NOT NULL,
   `hoja_vida` varchar(45) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
@@ -68,7 +66,7 @@ CREATE TABLE `empleado` (
 --
 
 CREATE TABLE `producto` (
-  `id` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `imagen` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -114,6 +112,13 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`nombre`, `contrasena`, `perfil`) VALUES
+('invitado', 'invitado', 'admon');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -121,7 +126,7 @@ CREATE TABLE `usuario` (
 -- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`codigo`);
+  ADD PRIMARY KEY (`documento`);
 
 --
 -- Indices de la tabla `empleado`
@@ -133,7 +138,7 @@ ALTER TABLE `empleado`
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`codigo`);
 
 --
 -- Indices de la tabla `producto_proveedor`
@@ -163,7 +168,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -174,7 +179,7 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `producto_proveedor`
   ADD CONSTRAINT `producto_proveedor_ibfk_1` FOREIGN KEY (`documento_proveedor`) REFERENCES `proveedor` (`documento`),
-  ADD CONSTRAINT `producto_proveedor_ibfk_2` FOREIGN KEY (`producto`) REFERENCES `producto` (`id`);
+  ADD CONSTRAINT `producto_proveedor_ibfk_2` FOREIGN KEY (`producto`) REFERENCES `producto` (`codigo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

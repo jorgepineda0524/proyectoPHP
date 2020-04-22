@@ -7,7 +7,7 @@
         }
 
        function  validarIngreso(){
-            $esValido=false;
+            //$esValido=false;
             $objUsuario1 = new Usuario('','','');
 			$usu= $this->objUsuario->getNomUsuario();
 			$con=$this->objUsuario->getContrasena();
@@ -17,26 +17,18 @@
 				$comandoSql="SELECT * FROM USUARIO  WHERE NOMBRE='".$usu."' AND CONTRASENA='".$con."'";
 				$recordSet=$objConexion->ejecutarSelect($comandoSql);
 				$registro = $recordSet->fetch_array(MYSQLI_BOTH);
-				$objUsuario1->setNomUsuario($registro['usuario']);
+				$objUsuario1->setNomUsuario($registro['nombre']);
         $objUsuario1->setContrasena($registro['contrasena']);
-        $objUsuario1->setTipoUsuario($registro['perfil']);
+        $this->objUsuario->setTipoUsuario($registro['perfil']);
       } catch (Exception $e){
             	echo "ERROR ".$e->getMessage()."\n";
           }
       $objConexion->cerrarBd();
 
-      if($this->objUsuario->getNomUsuario()==$objUsuario1->getNomUsuario() &&
+      return $this->objUsuario->getNomUsuario()==$objUsuario1->getNomUsuario() &&
       $this->objUsuario->getContrasena()==$objUsuario1->getContrasena()  &&
       $this->objUsuario->getNomUsuario() != "" &&
-      $this->objUsuario->getContrasena() != ""){
-        $esValido=true;
-      }else{
-        $esValido=false;
-      }
-
-      return $esValido;
-		
-      //return $esValido;
+      $this->objUsuario->getContrasena() != "";
       }
  }
 ?>
