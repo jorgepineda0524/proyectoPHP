@@ -3,7 +3,7 @@
 
         var $nomUsuario;
         var $contrasena;
-        var $tipoUsuario
+        var $tipoUsuario;
 
     function __construct($nomUsuario,$contrasena,$tipoUsuario){
 	    $this->nomUsuario= $nomUsuario;

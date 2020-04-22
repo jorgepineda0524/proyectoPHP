@@ -14,7 +14,7 @@ class Cliente{
     {
         $this->codigo=$codigo;
         $this->nombre=$nombre;
-        $this->tipoCliente=$tipoCliente
+        $this->tipoCliente=$tipoCliente;
         $this->fechaRegistro=$fechaRegistro;
         $this->imagen=$imagen;
         $this->email=$email;

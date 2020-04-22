@@ -1,0 +1,49 @@
+Entidades
+clientes
+proveedores
+empleados
+producto
+
+Tipos de acceso
+cliente
+proveedore
+empleado
+administrador
+
+
+DATOS BD
+clientes
+	codigo
+	nombre
+	tipocliente (persona natural o juridica)
+	fechaRegistro
+	fechaInactivo
+	imagen
+	email
+	telefono
+	credito
+empleados
+	codigo
+	nombre
+	fechaIngreso
+	fechaRetiro
+	ultimoSalario
+	deducciones
+	foto
+	hojaDeVida
+	email
+	telefono
+	celular
+productos
+	codigo
+	nombre
+	imagen
+	
+proveedores
+	codigo
+	nombre
+	tipo (natural o juridica)
+	email
+	telefono
+	prodictos que provee (
+	

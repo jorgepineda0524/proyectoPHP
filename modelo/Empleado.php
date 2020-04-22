@@ -4,20 +4,22 @@
         var $nombre;
         var $fechaIngreso;
         var $fechaRetiro;
-        var $ultimoSalario;
-        var $deducciones;
+        var $salarioBasico;
+        var $deduccion;
         var $foto;
-        var $hojaDeVida
+        var $hojaDeVida;
         var $email;
         var $telefono;
         var $celular;
 
-        function __construct($codigo,$nombre,$fechaIngreso,$deducciones,$foto,$hojaDeVida,$email,$telefono,$celular)
+        function __construct($codigo,$nombre,$fechaIngreso,$salarioBasico,$deduccion,$foto,$hojaDeVida,$email,$telefono,$celular)
         {
             $this->codigo=$codigo;
             $this->nombre=$nombre;
             $this->fechaIngreso=$fechaIngreso;
-            $this->deducciones=$deducciones:
+            $this->fechaRetiro=null;
+            $this->salarioBasico=$salarioBasico;
+            $this->deduccion=$deduccion:
             $this->foto=$foto;
             $this->hojaDeVida=$hojaDeVida;
             $this->email=$email;
@@ -33,9 +35,15 @@
         
         function setFechaIngreso($fechaIngreso) { $this->fechaIngreso = $fechaIngreso; }
         function getFechaIngreso() { return $this->fechaIngreso; }
+
+        function setFechaRetiro($fechaRetiro) { $this->fechaRetiro = $fechaRetiro; }
+        function getFechaRetiro() { return $this->fechaRetiro; }
+
+        function setSalarioBasico($salarioBasico) { $this->SalarioBasico = $salarioBasico; }
+        function getSalarioBasico() { return $this->SalarioBasico; }
         
-        function setDeducciones($deducciones) { $this->deducciones = $deducciones; }
-        function getDeducciones() { return $this->deducciones; }
+        function setDeduccion($deduccion) { $this->deduccion = $deduccion; }
+        function getDeduccion() { return $this->deduccion; }
         
         function setFoto($foto) { $this->foto = $foto; }
         function getFoto() { return $this->foto; }

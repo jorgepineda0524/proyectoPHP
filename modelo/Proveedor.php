@@ -5,16 +5,20 @@
         var $tipoProveedor;
         var $email;
         var $telefono;
-        var $productos;
+        var $imagen;
+        var $fechaRegistro;
+        var $fecharInactivo
         
-    function __construct($codigo,$nombre,$tipoProveedor,$email,$telefono,$productos)
+    function __construct($codigo,$nombre,$tipoProveedor,$email,$telefono,$fechaRegistro,$imagen)
     {
         $this->codigo=$codigo;
         $this->nombre=$nombre;
         $this->tipoProveedor=$tipoProveedor;  
         $this->email=$email;
         $this->telefono=$telefono;
-        $this->productos=$productos;
+        $this->fechaRegistro=$fecharRegistro;
+        $this->imagen=$imagen;
+        $this->fechaInactivo=null;
     }
 
     function setCodigo($codigo) { $this->codigo = $codigo; }
@@ -32,9 +36,14 @@
     function setTelefono($telefono) { $this->telefono = $telefono; }
     function getTelefono() { return $this->telefono; }
 
-    function setProductos($productos) { $this->productos = $productos; }
-    function getProductos() { return $this->productos; }
+    function setImagen($imagen) { $this->imagen = $imagen; }
+    function getImagen() { return $this->imagen; }
 
+    function setFechaRegistro($fecharRegistro) { $this->fecharRegistro = $fecharRegistro; }
+    function getFechaRegistro() { return $this->fecharRegistro; }
+
+    function setFechaInactivo($fecharInactivo) { $this->fecharInactivo = $fecharInactivo; }
+    function getFechaInactivo() { return $this->fecharInactivo; }
 
     }
 ?>

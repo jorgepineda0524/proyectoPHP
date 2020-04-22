@@ -25,7 +25,7 @@
     
             $objConexion = new ControlConexion();
             $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
-            $comandoSql="UPDATE PRODUCTO SET NOMBRE='".$nombre."',IMAGEN='".$imagen"' WHERE CODIGO='".$codigo."'";
+            $comandoSql="UPDATE PRODUCTO SET NOMBRE='".$nombre."',IMAGEN='".$imagen."' WHERE CODIGO='".$codigo."'";
             $objConexion->ejecutarComandoSql($comandoSql);
             $objConexion->cerrarBd();
         }
@@ -47,12 +47,7 @@
             $recordSet=$objConexion->ejecutarSelect($comandoSql);
             $registro = $recordSet->fetch_array(MYSQLI_BOTH);
             $this->objProducto->setNombre($registro["nombre"]);
-            $this->objProducto->setTipoProducto($registro["tipoProducto"]);
-            $this->objProducto->setFechaRegistro($registro["fechaRegistro"]);
             $this->objProducto->setImagen($registro["imagen"]);
-            $this->objProducto->setEmail($registro["email"]);
-            $this->objProducto->setTelefono($registro["telefono"]);
-            $this->objProducto->setCredito($registro["credito"]);
             $objConexion->cerrarBd();
             return $this->objProducto;
         }

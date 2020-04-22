@@ -2,7 +2,7 @@
 $GLOBALS['serv']="localhost";
 $GLOBALS['usua']="root";
 $GLOBALS['pass']="";
-$GLOBALS['bdat']="bdclientes";
+$GLOBALS['bdat']="bdproyectoaula";
 //$GLOBALS['serv']="serv1mysql.mysql.database.azure.com";
 //$GLOBALS['usua']="adminmysql@serv1mysql";
 //$GLOBALS['pass']="***********";
