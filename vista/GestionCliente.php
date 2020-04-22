@@ -62,7 +62,7 @@ function redireccionar(url)
                                 <nav>
                                     <ul id="navigation">
                                         
-                                        <li><a href="#">Gestión de usuarios</a></li>
+                                        <li><a href="features.html">Gestión de usuarios</a></li>
                                         <li><a href="index.php">Gestión Admin <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                  <li><a href="GestionEmpleado.php">Empleado</a></li>
@@ -108,13 +108,11 @@ function redireccionar(url)
                         
                     </div>
                     <div class="col-md-9 register-right">
-               
-
                     
                             
                         <div class="tab-content" id="myTabContent" >
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading" style="color: black">Datos Empleado</h3>
+                                <h3 class="register-heading" style="color: black">Datos Cliente</h3>
                                 <div class="row register-form">
                                     <div class="col-md-6">
                                         <div class="form-group">

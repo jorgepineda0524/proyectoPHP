@@ -18,8 +18,14 @@ try{
             $_SESSION['Usu']=  $usu;
             $_SESSION['Con']=  $con;
             $_SESSION['per']=  $objUsuario->getTipoUsuario();
-            header('Location: vista/menu.php');
-        
+
+            if($objUsuario->getTipoUsuario() == "admin"){
+              header('Location: vista/menuAdmin.php');
+            }else{
+              header('Location: vista/menuGeneral.php');
+            }
+            
+            
           }else{
             echo "<script>alert('Usuario y/o contraseña incorrectos');</script>";
         }
