@@ -1,7 +1,7 @@
 <?php
 session_start();
 if($_SESSION['Usu']==  null)header('Location: ../index.php');
-if($_SESSION['per'] != "admin"){
+if($_SESSION['per'] != "Administrador"){
   echo "<script>alert('Usted no tiene acceso a esta área')</script>";
   header('Location: menuGeneral.php');
 }else{
@@ -55,7 +55,7 @@ echo"
                             <div class='main-menu  d-none d-lg-block'>
                                 <nav>
                                     <ul id='navigation'>
-                                        <li><a href='features.html'>Gestión de usuarios</a></li>
+                                        <li><a href='GestionUsuario.php'>Gestión de usuarios</a></li>
                                         <li><a href='index.php'>Gestión Admin <i class='ti-angle-down'></i></a>
                                             <ul class='submenu'>
                                                  <li><a href='GestionEmpleado.php'>Empleado</a></li>

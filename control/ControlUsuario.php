@@ -30,5 +30,26 @@
       $this->objUsuario->getNomUsuario() != "" &&
       $this->objUsuario->getContrasena() != "";
       }
+
+
+      function guardar(){
+      $usu= $this->objUsuario->getNomUsuario();
+      $con=$this->objUsuario->getContrasena();
+      $tusu= $this->objUsuario->getTipoUsuario();
+
+      try{
+        $objConexion = new ControlConexion();
+        $cmdSql="INSERT INTO usuario(nombre,contrasena,perfil) values('".$usu."','".$con."','".$tusu."')";
+        $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
+        //$objConexion->abrirBd("localhost","root","","bdproyectoaula");
+        $objConexion->ejecutarComandoSql($cmdSql);
+        $objConexion->cerrarBd();
+        
+      }
+      catch(Exception $objExp){
+        echo $objExp->getMessage();
+      }
+
+    }
  }
 ?>

@@ -1,4 +1,5 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>
@@ -12,8 +13,6 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
     <link rel="stylesheet" type="text/css" href="styleGestion.css">
 
 
@@ -53,7 +52,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         
-                                        <li><a href="features.html">Gestión de usuarios</a></li>
+                                        <li><a href="#">Gestión de usuarios</a></li>
                                         <li><a href="index.php">Gestión Admin <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                  <li><a href="GestionEmpleado.php">Empleado</a></li>
@@ -86,6 +85,7 @@
 
 
     <!-- div formulario de gestion de administrado  -->
+    <form method="post" action="recibeGestionUsuario.php">
     <div class="productivity_area">
         <div class="container">
             <div class="row align-items-center">
@@ -99,71 +99,32 @@
                         
                     </div>
                     <div class="col-md-9 register-right">
+               
+
                     
                             
                         <div class="tab-content" id="myTabContent" >
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading" style="color: black">Datos Cliente</h3>
+                                <h3 class="register-heading" style="color: black">Crear usuario</h3>
                                 <div class="row register-form">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Documento *" name="txtDocumento" />
+                                            <input type="text" class="form-control" placeholder="Nombre de usuario *" name="txtNomUsu" required />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Nombre y apellido*" name="txtNombre"/>
+                                            <input type="text" class="form-control" placeholder="Contraseña *" name="txtContrasena" required />
                                         </div>
                                         <div class="form-group">
-                                            <div>
-                                                <h6>Fecha de ingreso:</h6>
-                                            </div>
-                                            <input type="date" class="form-control" name="txtFechaIngreso" >
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Salario Básico" name="txtSalario"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="Deducción" name="txtDeduccion"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="maxl">
-                                                <label class="radio inline"> 
-                                                    <input type="radio" name="chkEmpleado" value="Empleado">
-                                                    <span> Empleado </span> 
-                                                </label>
-                                                <label class="radio inline"> 
-                                                    <input type="radio" name="chkAdministrador" value="Administrador" checked>
-                                                    <span> Administrador </span> 
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email *" name="txtEmail"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" minlength="10" maxlength="10" name="txtTelefono" class="form-control" placeholder="Telefono *" value=""/>
-                                        </div>
-                                         <div class="form-group">
-                                            <input type="text" minlength="10" maxlength="10" name="txtCelular" class="form-control" placeholder="Celular" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control" name="txtGenero">
-                                                <option class="hidden"  selected disabled>Genero</option>
-                                                <option>Masculino</option>
-                                                <option>Femenino</option>
+                                            <h5>Tipo de perfil:</h5>
+                                            <select class="form-control" name="txtPerfil" required>
+                                                <option value=""></option>
+                                                <option value="admin">Aministrador</option>
+                                                <option value="clie">Cliente</option>
+                                                <option value="empl">Empleado</option>
+                                                <option value="prov">Proveedor</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <h6>Adjuntar foto:</h6>
-                                            <input type="file" name="fileFoto" accept=".jpg,.png">
-                                        </div>
-                                        <div class="form-group">
-                                            <h6>Adjuntar hoja de vida:</h6>
-                                            <input type="file" name="fileHv" accept=".doc,.docx,.pdf">
-                                        </div>
-                                        <input type="submit" class="btnRegister"  value="Registrar"/>
-                                        <input type="submit" class="btnRegister"  value="Actualizar" style="background: red"/>
+                                        <input type="submit" class="btnRegister"  value="Registrar" name="btn" />
                                     </div>
                                 </div>
                             </div>
@@ -178,6 +139,7 @@
             </div>
         </div>
     </div>
+    </form>
     <!--/ fin de div para descargar la app  -->
 
     <!-- Aquí inicia el pie de pagina -->
