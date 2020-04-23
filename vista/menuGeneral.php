@@ -62,7 +62,7 @@ echo"
                                                  <li><a href='elements.html'>elements</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href='contact.html'>Gestión Admin</a></li>
+                                        <li><a href='menuAdmin.php'>Gestión Admin</a></li>
                                     </ul>
                                 </nav>
                             </div>

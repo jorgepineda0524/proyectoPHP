@@ -13,7 +13,8 @@ switch($boton){
 
 	    $objUsuario = new Usuario($nom,$usu,$tusu);
 	    $objControlUsuario = new ControlUsuario($objUsuario);
-	    $objControlUsuario->guardar();
+        $objControlUsuario->guardar();
+        echo "<script>alert('Se creó el usuario correctamente');</script>";
 		break;
 	/*case 'Consultar':
 
@@ -111,7 +112,7 @@ echo"
                         <div class='col-xl-3 col-lg-3 d-none d-lg-block'>
                             <div class='Appointment'>
                                 <div class='book_btn d-none d-lg-block'>
-                                    <a  href='#'>Cerrar sesión</a>
+                                    <a  href='cerrarSesion.php'>Cerrar sesión</a>
                                 </div>
                             </div>
                         </div>
