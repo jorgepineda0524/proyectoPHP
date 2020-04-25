@@ -11,7 +11,7 @@ class ControlCliente {
 	function guardar(){
 		$documento=$this->objCliente->getCodigo();
 		$nombre=$this->objCliente->getNombre();
-		$tipoCliente=$this->objCLiente->getTipoCliente();
+		$tipoCliente=$this->objCliente->getTipoCliente();
 		$fechaRegistro=$this->objCliente->getFechaRegistro();
 		$imagen=$this->objCliente->getImagen();
 		$email=$this->objCliente->getEmail();
@@ -21,7 +21,7 @@ class ControlCliente {
 		$objConexion = new ControlConexion();
 		$objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
         $comandoSql="INSERT INTO CLIENTE(DOCUMENTO,NOMBRE,TIPO,FECHA_REGISTRO,
-		IMAGEN,EMAIL,TELEFONO,CUPO) VALUES('".$codigo."','".$nombre."','".$tipoCliente."','".$fechaRegistro."',
+		IMAGEN,EMAIL,TELEFONO,CUPO) VALUES('".$documento."','".$nombre."','".$tipoCliente."','".$fechaRegistro."',
 		'".$imagen."','".$email."','".$telefono."','".$cupo."')";
 		$objConexion->ejecutarComandoSql($comandoSql);
 		$objConexion->cerrarBd();
