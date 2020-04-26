@@ -16,7 +16,6 @@ try{
     $objUsuario=new Usuario($nom,$con,$tusu);
     $objCtrUsuario =new ControlUsuario($objUsuario);
     $objCtrUsuario->guardar();
-    header('Location: usuarioGuardado.php');
           
     }
 }
@@ -158,6 +157,11 @@ echo "
                     </div>
                 </div>
 
+            </div>
+
+
+
+            </div>
         </div>
     </div>
     </form>
@@ -178,7 +182,6 @@ echo "
             </div>
         </div>
     </footer>
-
     <!--/ fin del pie de pagina  -->
 
     <!-- JS  -->

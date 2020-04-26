@@ -1,30 +1,3 @@
-<?php
-error_reporting(E_ALL ^ E_NOTICE);
-session_start();
-include('../control/configBd.php');
-include('../modelo/Usuario.php');
-include('../control/ControlUsuario.php');
-include('../control/ControlConexion.php');
-
-try{
-    $nom=$_POST['txtNomUsu'];
-    $con=$_POST['txtContrasena'];
-    $tusu=$_POST['txtPerfil'];
-    $boton=$_POST['btn'];
- 
-    if($boton=="Registrar"){
-    $objUsuario=new Usuario($nom,$con,$tusu);
-    $objCtrUsuario =new ControlUsuario($objUsuario);
-    $objCtrUsuario->guardar();
-    header('Location: usuarioGuardado.php');
-          
-    }
-}
-catch (Exception $objExp) {
-    echo 'Se presentó una excepción: ',  $objExp->getMessage(), "\n";
-}
-
-echo "
 <!DOCTYPE html>
 <html class='no-js' lang='zxx'>
 
@@ -124,35 +97,12 @@ echo "
                         <p style='color: white'>Formulario para ingreso o actualizacion de Clientes, Empleados, Proveedores y Productos</p>
                         
                     </div>
-                    <div class='col-md-9 register-right'>
-               
-
-                    
+                    <div class='col-md-9 register-right'>                   
                             
                         <div class='tab-content' id='myTabContent' >
                             <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
-                                <h3 class='register-heading' style='color: black'>Crear usuario</h3>
-                                <div class='row register-form'>
-                                    <div class='col-md-6'>
-                                        <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Nombre de usuario *' name='txtNomUsu' required />
-                                        </div>
-                                        <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Contraseña *' name='txtContrasena' required />
-                                        </div>
-                                        <div class='form-group'>
-                                            <h5>Tipo de perfil:</h5>
-                                            <select class='form-control' name='txtPerfil' required>
-                                                <option value=''></option>
-                                                <option value='admin'>Administrador</option>
-                                                <option value='clie'>Cliente</option>
-                                                <option value='empl'>Empleado</option>
-                                                <option value='prov'>Proveedor</option>
-                                            </select>
-                                        </div>
-                                        <input type='submit' class='btnRegister'  value='Registrar' name='btn' />
-                                    </div>
-                                </div>
+                                <h3 class='register-heading-save' style='color: black'>Se guardó <br>correctamente</h3>
+                                <input type='submit' class='btnAceptar' value='Aceptar'>
                             </div>
                         </div>
                     </div>
@@ -191,5 +141,3 @@ echo "
 </body>
 
 </html>
-";
-?>
