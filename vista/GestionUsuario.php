@@ -7,13 +7,14 @@ include('../control/ControlUsuario.php');
 include('../control/ControlConexion.php');
 
 try{
-    $nom=$_POST['txtNomUsu'];
-    $con=$_POST['txtContrasena'];
-    $tusu=$_POST['txtPerfil'];
+    $nomUusario=$_POST['txtNomUsu'];
+    $contrasena=$_POST['txtContrasena'];
+    $contra_cifrada=password_hash($contrasena, PASSWORD_DEFAULT);
+    $perfil=$_POST['txtPerfil'];
     $boton=$_POST['btn'];
  
     if($boton=="Registrar"){
-    $objUsuario=new Usuario($nom,$con,$tusu);
+    $objUsuario=new Usuario($nomUusario,$contra_cifrada,$perfil);
     $objCtrUsuario =new ControlUsuario($objUsuario);
     $objCtrUsuario->guardar();
           
@@ -77,15 +78,19 @@ echo "
                                 <nav>
                                     <ul id='navigation'>
                                         
-                                        <li><a href='#'>Gestión de usuarios</a></li>
-                                        <li><a href='index.php'>Gestión Admin <i class='ti-angle-down'></i></a>
+                                    <li><a href='#'>Gestión usuario <i class='ti-angle-down'></i></a>
+                                    <ul class='submenu'>
+                                         <li><a href='GestionUsuario.php'>Nuevo usuario</a></li>
+                                         <li><a href='listaUsuarios.php'>Lista de usuarios</a></li>
+                                    </ul>
+                                    <li><a href='#'>Gestión Admin <i class='ti-angle-down'></i></a>
                                             <ul class='submenu'>
                                                  <li><a href='GestionEmpleado.php'>Empleado</a></li>
                                                  <li><a href='GestionProveedor.php'>Proveedor</a></li>
                                                  <li><a href='GestionCliente.php'>Cliente</a></li>
                                                  <li><a href='GestionProducto.php'>Producto</a></li>
                                             </ul>
-                                        </li>
+                                    </li>
                                         
                                     </ul>
                                 </nav>
