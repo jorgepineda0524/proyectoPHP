@@ -8,7 +8,7 @@ echo"
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <title>AppLab</title>
+    <title>Distribuidora</title>
     <meta name='description' content=''>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     
@@ -53,13 +53,14 @@ echo"
                                         <li><a href='Pricing.html'>Cliente</a></li>
                                         <li><a href='#'>Proveedor <i class='ti-angle-down'></i></a>
                                             <ul class='submenu'>
-                                                <li><a href='blog.html'>blog</a></li>
-                                                <li><a href='single-blog.html'>single-blog</a></li>
+                                                <li><a href='blog.html'>Datos</a></li>
+                                                <li><a href='single-blog.html'>Actualizar datos</a></li>
                                             </ul>
                                         </li>
                                         <li><a href='#'>Producto <i class='ti-angle-down'></i></a>
                                             <ul class='submenu'>
-                                                 <li><a href='elements.html'>elements</a></li>
+                                                 <li><a href='elements.html'>Nuevo</a></li>
+                                                 <li><a href='elements.html'>Borrar</a></li>
                                             </ul>
                                         </li>
                                         <li><a href='contact.html'>Gestión Admin</a></li>
