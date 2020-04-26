@@ -1,4 +1,5 @@
 <?php
+
     class ControlUsuario{
 	  var $objUsuario;
         function __construct($objUsuario){

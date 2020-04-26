@@ -1,10 +1,14 @@
 <?php 
 include('../control/configBd.php');
-include('../modelo/Usuario.php');
-include('../control/ControlUsuario.php');
+include('../modelo/Cliente.php');
+include('../control/ControlCliente.php');
 include('../control/ControlConexion.php');
 $nom=$_POST['txtNomUsu'];
 $usu=$_POST['txtContrasena'];
+$tusu=$_POST['txtPerfil'];
+$tusu=$_POST['txtPerfil'];
+$tusu=$_POST['txtPerfil'];
+$tusu=$_POST['txtPerfil'];
 $tusu=$_POST['txtPerfil'];
 $boton=$_POST['btn'];
 
