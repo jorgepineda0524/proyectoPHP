@@ -55,8 +55,13 @@ echo"
                             <div class='main-menu  d-none d-lg-block'>
                                 <nav>
                                     <ul id='navigation'>
-                                        <li><a href='GestionUsuario.php'>Gestión de usuarios</a></li>
-                                        <li><a href='index.php'>Gestión Admin <i class='ti-angle-down'></i></a>
+                                    <li><a href='#'>Gestión usuario <i class='ti-angle-down'></i></a>
+                                    <ul class='submenu'>
+                                         <li><a href='GestionUsuario.php'>Nuevo usuario</a></li>
+                                         <li><a href='listaUsuarios.php'>Lista de usuarios</a></li>
+                                    </ul>
+                                </li>
+                                        <li><a href='#'>Gestión Admin <i class='ti-angle-down'></i></a>
                                             <ul class='submenu'>
                                                  <li><a href='GestionEmpleado.php'>Empleado</a></li>
                                                  <li><a href='GestionProveedor.php'>Proveedor</a></li>

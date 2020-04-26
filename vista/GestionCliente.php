@@ -7,20 +7,23 @@ include('../control/ControlCliente.php');
 include('../control/ControlConexion.php');
 
 try{
-    $doc=$_POST['txtDocumento'];
-    $nom=$_POST['txtNombre'];
-    $t_cli=$_POST['txtTipoCliente'];
-    $f_reg=$_POST['txtFechaRegistro'];
-    $f_inac=$_POST['txtFechaInactivo'];
-    $img=$_POST['fileFoto'];
+    $documento=$_POST['txtDocumento'];
+    $nombre=$_POST['txtNombre'];
+    $tipo_cliente=$_POST['txtTipoCliente'];
+    $fecha_regis=$_POST['txtFechaRegistro'];
+    //$f_inac=$_POST['txtFechaInactivo'];
+    $foto=$_FILES['fileFoto']['name'];
+    $ruta=$_FILES['fileFoto']['tmp_name'];
+    $destino='fotoCliente/'.$foto;
+    copy($ruta,$destino);
     $email=$_POST['txtEmail'];
     $tel=$_POST['txtTelefono'];
-    $cred=$_POST['txtCredito'];
+    $credito=$_POST['txtCredito'];
 
     $boton=$_POST['btn'];
  
     if($boton=="Registrar"){
-    $objCliente=new Cliente($doc,$nom,$t_cli,$f_reg,$img,$email,$tel,$cred);
+    $objCliente=new Cliente($documento,$nombre,$tipo_cliente,$fecha_regis,$destino,$email,$tel,$credito);
     $objCtrCliente =new ControlCliente($objCliente);
     $objCtrCliente->guardar();
           
@@ -133,7 +136,7 @@ echo "
 
 
     <!-- div formulario de gestion de administrado para ingreso de clientes  -->
-    <form method='post' action='GestionCliente.php'>
+    <form method='post' action='GestionCliente.php' enctype='multipart/form-data'>
     <div class='productivity_area'>
         <div class='container'>
             <div class='row align-items-center'>
@@ -173,12 +176,6 @@ echo "
                                                 <h6>Fecha de ingreso:</h6>
                                             </div>
                                             <input type='date' class='form-control' name='txtFechaRegistro' >
-                                        </div>
-                                        <div class='form-group'>
-                                            <div>
-                                                <h6>Fecha de inactivo:</h6>
-                                            </div>
-                                            <input type='date' class='form-control' name='txtFechaInactivo' >
                                         </div>
                                         
                                     </div>
