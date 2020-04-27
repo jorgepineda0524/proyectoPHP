@@ -156,13 +156,14 @@ echo "
                                             </select>
                                         </div>
                                         <input type='submit' class='btnRegister'  value='Registrar' name='btn' />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
         </div>
     </div>
     </form>

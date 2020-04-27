@@ -64,6 +64,7 @@ echo"
                                             </ul>
                                         </li>
                                         <li><a href='menuAdmin.php'>Gestión Admin</a></li>
+                                        <li><a href='Ubicacion.php'>🌍Mapa</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -123,7 +124,7 @@ echo"
                         <div class='thumb'>
                                 <img src='img/icon/2.svg' alt=''>
                         </div>
-                        <h3>Administración de usuarios </h3>
+                        <h3>Ubicación de clientes, proveedores y empleados</h3>
                     </div>
                 </div>
                 <div class='col-lg-4 col-md-4'>
