@@ -10,14 +10,14 @@
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>	  
 <div id="map" class="map map-home" style="margin:12px 0 12px 0;height:400px;"></div>
 <script>
-	var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-		osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-		osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
-	var map = L.map('map').setView([6.25, -75.5661], 17).addLayer(osm);
-	L.marker([6.25, -75.5661])
-		.addTo(map)
-		.bindPopup('Colteger')
-		.openPopup();
+var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+var map = L.map('map').setView([6.25, -75.5661], 17).addLayer(osm);
+L.marker([6.25, -75.5661])
+.addTo(map)
+.bindPopup('Colteger')
+.openPopup();
 </script>
-  </body>
+</body>
 </html>
