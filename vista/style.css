@@ -16,7 +16,7 @@
     color:#fff;
 }
 #navbar a.dropdown-item {
-    font-weight:400 !important;
+    font-weight:100 !important;
 }
 #navbar button.dropdown-toggle-split {
     background-color:transparent;
