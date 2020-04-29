@@ -49,18 +49,26 @@ echo"
                             <div class='main-menu  d-none d-lg-block'>
                                 <nav>
                                     <ul id='navigation'>
-                                        <li><a href='features.html'>Empleado</a></li>
-                                        <li><a href='Pricing.html'>Cliente</a></li>
+                                    <li><a href='#'>Producto <i class='ti-angle-down'></i></a>
+                                        <ul class='submenu'>
+                                            <li><a href='listaProductos.php'>Catalogo de productos</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href='#'>Cliente <i class='ti-angle-down'></i></a>
+                                        <ul class='submenu'>
+                                            <li><a href='datosCliente.php'>ver datos</a></li>
+                                        </ul>
+                                    </li>
                                         <li><a href='#'>Proveedor <i class='ti-angle-down'></i></a>
                                             <ul class='submenu'>
                                                 <li><a href='blog.html'>Datos</a></li>
                                                 <li><a href='single-blog.html'>Actualizar datos</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href='#'>Producto <i class='ti-angle-down'></i></a>
+                                        <li><a href='#'>Empleado <i class='ti-angle-down'></i></a>
                                             <ul class='submenu'>
-                                                 <li><a href='elements.html'>Nuevo</a></li>
-                                                 <li><a href='elements.html'>Borrar</a></li>
+                                                 <li><a href='datosEmpleado.php'>Ver datos</a></li>
+                                                 <li><a href=''>Lista de productos</a></li>
                                             </ul>
                                         </li>
                                         <li><a href='menuAdmin.php'>Gestión Admin</a></li>

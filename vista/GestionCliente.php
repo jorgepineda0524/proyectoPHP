@@ -1,6 +1,11 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 session_start();
+if($_SESSION['Usu']==  null)header('Location: ../index.php');
+if($_SESSION['per'] != "admin"){
+    echo "<script>alert('Usted no tiene acceso a esta área')</script>";
+    header('Location: menuGeneral.php');
+}
 include('../control/configBd.php');
 include('../modelo/Cliente.php');
 include('../control/ControlCliente.php');
@@ -15,7 +20,7 @@ try{
     $foto=$_FILES['fileFoto']['name'];
     $ruta=$_FILES['fileFoto']['tmp_name'];
     $destino='fotoCliente/'.$foto;
-    copy($ruta,$destino);
+    move_uploaded_file($ruta,$destino);
     $email=$_POST['txtEmail'];
     $tel=$_POST['txtTelefono'];
     $credito=$_POST['txtCredito'];
