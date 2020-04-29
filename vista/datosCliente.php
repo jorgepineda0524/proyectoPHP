@@ -1,21 +1,14 @@
 <?php
 session_start();
+if($_SESSION['Usu']==  null)header('Location: ../index.php');
+if($_SESSION['per'] != "clie"){
+    echo "<script>alert('Usted no tiene acceso a esta área')</script>";
+    header('Location: menuGeneral.php');
+}
 include('../control/configBd.php');
 include('../modelo/Usuario.php');
 include('../control/ControlUsuario.php');
 include('../control/ControlConexion.php');
-
-$usuario=$_SESSION['Usu'];
-$objUsuario=new Usuario($usuario,'','');
-$objCtrUsuario =new ControlUsuario($objUsuario);
-$resultUsuario=$objCtrUsuario->consultarPerfil();
-
-if($usuario ==  null){
-    header('Location: ../index.php');
-}
-if($resultUsuario ==  'clie'){
-    header('Location: ../index.php');
-}
 
 echo"
 <!doctype html>
