@@ -5,16 +5,16 @@ include('../modelo/Usuario.php');
 include('../control/ControlUsuario.php');
 include('../control/ControlConexion.php');
 
-$usuario=$_SESSION['Usu'];
-$objUsuario=new Usuario($usuario,'','');
+
+$objUsuario=new Usuario($_SESSION['Usu'],'','');
 $objCtrUsuario =new ControlUsuario($objUsuario);
 $resultUsuario=$objCtrUsuario->consultarPerfil();
 
-if($usuario ==  null){
+if($_SESSION['Usu'] ==  null){
     header('Location: ../index.php');
 }
-if($resultUsuario ==  'clie'){
-    header('Location: ../index.php');
+if($resultUsuario !=  'clie'){
+    header('Location: menuGeneral.php');
 }
 
 echo"
@@ -82,7 +82,7 @@ echo"
                                     </li>
                                     <li><a href='#'>Cliente <i class='ti-angle-down'></i></a>
                                         <ul class='submenu'>
-                                            <li><a href='listaProductos.php'>Ver datos</a></li>
+                                            <li><a href='datosCliente.php'>Ver datos</a></li>
                                         </ul>
                                     </li>
                                         <li><a href='#'>Proveedor <i class='ti-angle-down'></i></a>

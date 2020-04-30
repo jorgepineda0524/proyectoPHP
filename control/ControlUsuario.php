@@ -86,5 +86,28 @@
           return $recordSet;
             
   }
+
+  function  consultarPerfil(){
+  
+    
+    $usuario= $this->objUsuario->getNomUsuario();
+    $objConexion = new ControlConexion();
+    
+    try{
+        $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
+        $comandoSql="SELECT perfil FROM USUARIO WHERE NOMBRE='".$usuario."'";
+        $recordSet=$objConexion->ejecutarSelect($comandoSql);
+        
+
+    } catch (Exception $e){
+      echo "ERROR ".$e->getMessage()."\n";
+      }
+      
+      $objConexion->cerrarBd();
+
+      return $recordSet;
+        
+    }
+
  }
 ?>
