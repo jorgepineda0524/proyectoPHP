@@ -19,7 +19,7 @@ try{
             $_SESSION['Con']=  $con;
             $_SESSION['per']=  $objUsuario->getTipoUsuario();
 
-            if($objUsuario->getTipoUsuario() == "admin"){
+            if($_SESSION['per'] == "admin"){
               header('Location: vista/menuAdmin.php');
             }else{
               header('Location: vista/menuGeneral.php');

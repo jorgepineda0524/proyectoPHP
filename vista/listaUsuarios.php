@@ -6,6 +6,10 @@ if($_SESSION['per'] != "admin"){
     echo "<script>alert('Usted no tiene acceso a esta área')</script>";
     header('Location: menuGeneral.php');
 }
+include('../control/configBd.php');
+include('../modelo/Usuario.php');
+include('../control/ControlUsuario.php');
+include('../control/ControlConexion.php');
 
 echo "
 <!DOCTYPE html>
@@ -116,13 +120,7 @@ echo "
                               <th  class='head'>Status</th>
                             </tr>
                           </thead>";
-                            ?>
-                            <?php
-                                include('../control/configBd.php');
-                                include('../modelo/Usuario.php');
-                                include('../control/ControlUsuario.php');
-                                include('../control/ControlConexion.php');
-
+                                
                                 $objUsuario=new Usuario('','','');
                                 $objCtrUsuario =new ControlUsuario($objUsuario);
                                 $listaUsuarios=$objCtrUsuario->listarUsuarios();
@@ -134,18 +132,16 @@ echo "
 
                           <tbody style='border:1px solid #807e7e; background-color:#242424; color:#A1A6AB; text-align: left;'>
                             <tr>
-                              <td style='padding: 14px; text-align: center;'>";?><?php echo $codigo."</td>
-                              <td style='text-align: center;'>";?><?php echo $registros['nombre']."</td>
-                              <td style='text-align: center;'>";?><?php echo $registros['perfil']."</td>
+                              <td style='padding: 14px; text-align: center;'>"; echo $codigo."</td>
+                              <td style='text-align: center;'>";echo $registros['nombre']."</td>
+                              <td style='text-align: center;'>";echo $registros['perfil']."</td>
                               <td style='text-align: center;'>
                                <label class='switch'>
                                <input type='checkbox' checked>
                                <span class='slider round'></span>
                                </label>
                               </td>
-                            </tr>";?>
-                            
-                            <?php
+                            </tr>";
                                 $codigo++;
                                 }
                                 echo "

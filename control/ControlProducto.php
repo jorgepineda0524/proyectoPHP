@@ -1,6 +1,6 @@
 <?php
     class ControlProducto{
-        var objProducto;
+        var $objProducto;
 
         function __construct($objProducto){
             $this->objProducto=$objProducto;        
@@ -51,5 +51,25 @@
             $objConexion->cerrarBd();
             return $this->objProducto;
         }
+
+        function  listarProductos(){
+        
+            $objConexion = new ControlConexion();
+            
+            try{
+                $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
+                $comandoSql="SELECT * FROM PRODUCTO";
+                $recordSet=$objConexion->ejecutarSelect($comandoSql);
+                
+    
+            } catch (Exception $e){
+              echo "ERROR ".$e->getMessage()."\n";
+              }
+              
+              $objConexion->cerrarBd();
+    
+              return $recordSet;
+                
+      }
     }
 ?>

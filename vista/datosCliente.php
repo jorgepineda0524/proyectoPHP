@@ -1,5 +1,10 @@
 <?php
 session_start();
+if($_SESSION['Usu']==  null)header('Location: ../index.php');
+if($_SESSION['per'] != "clie"){
+    echo "<script>alert('Usted no tiene acceso a esta área')</script>";
+    header('Location: menuGeneral.php');
+}
 include('../control/configBd.php');
 include('../modelo/Usuario.php');
 include('../control/ControlUsuario.php');
@@ -16,6 +21,7 @@ if($_SESSION['Usu'] ==  null){
 if($resultUsuario !=  'clie'){
     header('Location: menuGeneral.php');
 }
+
 
 echo"
 <!doctype html>
