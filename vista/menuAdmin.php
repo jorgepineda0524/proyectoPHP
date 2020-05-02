@@ -53,25 +53,46 @@ echo"
                         </div>
                         <div class='col-xl-6 col-lg-7'>
                             <div class='main-menu  d-none d-lg-block'>
-                                <nav>
-                                    <ul id='navigation'>
-                                    <li><a href='#'>Gestión usuario <i class='ti-angle-down'></i></a>
+                        <nav>
+                            <ul id='navigation'>
+                                <li><a href='#'>Gestión usuario <i class='ti-angle-down'></i></a>
                                     <ul class='submenu'>
-                                         <li><a href='GestionUsuario.php'>Nuevo usuario</a></li>
-                                         <li><a href='listaUsuarios.php'>Lista de usuarios</a></li>
+                                        <li><a href='GestionUsuario.php'>Nuevo usuario</a></li>
+                                        <li><a href='listaUsuarios.php'>Lista de usuarios</a></li>
                                     </ul>
                                 </li>
-                                        <li><a href='#'>Gestión Admin <i class='ti-angle-down'></i></a>
+                                <li><a href='#'>Gestión Admin <i class='ti-angle-down'></i></a>
+                                    <ul class='submenu'>
+                                        <li><a href='GestionEmpleado.php'>Empleado</a></li>
+                                        <li><a href='GestionProveedor.php'>Proveedor</a></li>
+                                        <li><a href='GestionCliente.php'>Cliente</a></li>
+                                        <li><a href='GestionProducto.php'>Producto</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#'>Producto <i class='ti-angle-down'></i></a>
+                                        <ul class='submenu'>
+                                            <li><a href='listaProductos.php'>Catalogo de productos</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href='#'>Cliente <i class='ti-angle-down'></i></a>
+                                        <ul class='submenu'>
+                                            <li><a href='datosCliente.php'>ver datos</a></li>
+                                        </ul>
+                                    </li>
+                                        <li><a href='#'>Proveedor <i class='ti-angle-down'></i></a>
                                             <ul class='submenu'>
-                                                 <li><a href='GestionEmpleado.php'>Empleado</a></li>
-                                                 <li><a href='GestionProveedor.php'>Proveedor</a></li>
-                                                 <li><a href='GestionCliente.php'>Cliente</a></li>
-                                                 <li><a href='GestionProducto.php'>Producto</a></li>
+                                                <li><a href='blog.html'>Datos</a></li>
+                                                <li><a href='single-blog.html'>Actualizar datos</a></li>
                                             </ul>
                                         </li>
-                                        
-                                    </ul>
-                                </nav>
+                                        <li><a href='#'>Empleado <i class='ti-angle-down'></i></a>
+                                            <ul class='submenu'>
+                                                 <li><a href='datosEmpleado.php'>Ver datos</a></li>
+                                                 <li><a href=''>Lista de productos</a></li>
+                                            </ul>
+                                        </li>
+                            </ul>
+                        </nav>
                             </div>
                         </div>
                         <div class='col-xl-3 col-lg-3 d-none d-lg-block'>

@@ -100,7 +100,9 @@ echo "
                         <div class='col-xl-3 col-lg-3 d-none d-lg-block'>
                             <div class='Appointment'>
                                 <div class='book_btn d-none d-lg-block'>
-                                    
+                                    <label id='nomUsuario' style='color:white'>";
+                                    echo "👤 ".$_SESSION['Usu']. " 
+                                    </label>
                                     <a href='cerrarSesion.php' style='border-color: white'>Cerrar sesión</a>
                                 </div>
                             </div>
@@ -148,7 +150,7 @@ echo "
                            </div>
                         </div>
                         <div class='col-md-2'>
-            	           <button type='button' class='btn btn-primary btn-block' style='background: #22f27c; border-color: white'>Filtrar</button>
+            	           <button type='button' class='btn btn-primary btn-block' style='background: #2958f2; border-color: white'>Filtrar</button>
             	        </div>
                 	</div>
     </div>

@@ -30,7 +30,7 @@ class ControlCliente {
 	function modificar(){
 		$documento=$this->objCliente->getCodigo();
 		$nombre=$this->objCliente->getNombre();
-		$tipoCliente=$this->objCLiente->getTipoCliente();
+		$tipoCliente=$this->objCliente->getTipoCliente();
 		$fechaRegistro=$this->objCliente->getFechaRegistro();
 		$imagen=$this->objCliente->getImagen();
 		$email=$this->objCliente->getEmail();
@@ -62,6 +62,7 @@ class ControlCliente {
 		$comandoSql="SELECT * FROM CLIENTE  WHERE DOCUMENTO='".$documento."'";
 		$recordSet=$objConexion->ejecutarSelect($comandoSql);
 		$registro = $recordSet->fetch_array(MYSQLI_BOTH);
+		$this->objCliente->setCodigo($registro["documento"]);
 		$this->objCliente->setNombre($registro["nombre"]);
 		$this->objCliente->setTipoCliente($registro["tipo"]);
 		$this->objCliente->setFechaRegistro($registro["fecha_registro"]);

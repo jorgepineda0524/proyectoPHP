@@ -18,9 +18,9 @@ $resultUsuario=$objCtrUsuario->consultarPerfil();
 if($_SESSION['Usu'] ==  null){
     header('Location: ../index.php');
 }
-if($resultUsuario !=  'clie'){
+/*if($resultUsuario !=  'clie'){
     header('Location: menuGeneral.php');
-}
+}*/
 
 
 echo"

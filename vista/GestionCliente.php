@@ -12,6 +12,7 @@ include('../control/ControlCliente.php');
 include('../control/ControlConexion.php');
 
 try{
+    $buscarDocumento=$_POST['txtDocumentoBusc'];
     $documento=$_POST['txtDocumento'];
     $nombre=$_POST['txtNombre'];
     $tipo_cliente=$_POST['txtTipoCliente'];
@@ -33,6 +34,27 @@ try{
     $objCtrCliente->guardar();
           
     }
+    /*-----------------------Nuevo codigo-----------------------------------------*/
+    if($boton=="Buscar"){
+        $objCliente=new Cliente($buscarDocumento,"","","","","","","");
+        $objCtrCliente =new ControlCliente($objCliente);
+        $objCliente=$objCtrCliente->consultar();
+        $documento=$objCliente->getCodigo();
+        $nombre=$objCliente->getNombre();
+        $tipoCliente=$objCliente->getTipoCliente();
+        $fechaRegis=$objCliente->getFechaRegistro();
+        $fechaRegis=$objCliente->getFechaRegistro();
+        $credito=$objCliente->getCredito();
+        $email=$objCliente->getEmail();
+        $tel=$objCliente->getTelefono();
+        $imag=$objCliente->getImagen();
+    }
+    if($boton=="Actualizar"){
+        $objCliente=new Cliente($documento,$nombre,$tipo_cliente,$fecha_regis,$destino,$email,$tel,$credito);
+        $objCtrCliente =new ControlCliente($objCliente);
+        $objCtrCliente->modificar();
+    }
+    /*------------------------------------------------------------------------------*/
 }
 catch (Exception $objExp) {
     echo 'Se presentó una excepción: ',  $objExp->getMessage(), "\n";
@@ -159,22 +181,26 @@ echo "
                     </div>
                     <div class='col-md-9 register-right'>
                     
-                            
+                        
                         <div class='tab-content' id='myTabContent' >
+                                        
                             <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
+                                        <div style='width: 200px; float: right'>
+                                            <input type='submit' class='btnRegister'  value='Buscar' name='btn' style='background: #2ad482'/>
+                                            <input type='text' class='form-control' placeholder='Busqueda documento' name='txtDocumentoBusc'/>                                        </div></br>
                                 <h3 class='register-heading' style='color: black'>Datos Cliente</h3>
                                 <div class='row register-form'>
                                     <div class='col-md-6'>
                                         <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Documento *' name='txtDocumento' />
+                                            <input type='text' class='form-control' placeholder='Documento *' name='txtDocumento' value =\"".$documento."\"/>
                                         </div>
                                         <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Nombre y apellido*' name='txtNombre'/>
+                                            <input type='text' class='form-control' placeholder='Nombre y apellido*' name='txtNombre' value =\"".$nombre."\"/>
                                         </div>
                                         <div class='form-group'>
                                             <h5>Tipo de cliente:</h5>
-                                            <select class='form-control' name='txtTipoCliente' required>
-                                                <option value=''></option>
+                                            <select class='form-control' name='txtTipoCliente'>
+                                                <option value =\"".$tipoCliente."\">".$tipoCliente."</option>
                                                 <option value='perNatural'>Persona natural</option>
                                                 <option value='perJuridica'>Persona jurídica</option>
                                             </select>
@@ -183,23 +209,23 @@ echo "
                                             <div>
                                                 <h6>Fecha de ingreso:</h6>
                                             </div>
-                                            <input type='date' class='form-control' name='txtFechaRegistro' >
+                                            <input type='date' class='form-control' name='txtFechaRegistro' value =\"".$fechaRegis."\">
                                         </div>
                                         
                                     </div>
                                     <div class='col-md-6'>
                                         <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Crédito' name='txtCredito' onkeyup='format(this)' onchange='format(this)'/>
+                                            <input type='text' class='form-control' placeholder='Crédito' name='txtCredito' onkeyup='format(this)' onchange='format(this)' value='";echo $credito."'/>
                                         </div>
                                         <div class='form-group'>
-                                            <input type='email' class='form-control' placeholder='Email' name='txtEmail'/>
+                                            <input type='email' class='form-control' placeholder='Email' name='txtEmail' value =\"".$email."\"/>
                                         </div>
                                         <div class='form-group'>
-                                            <input type='text' minlength='10' maxlength='10' name='txtTelefono' class='form-control' placeholder='Telefono *' value=''/>
+                                            <input type='text' minlength='10' maxlength='10' name='txtTelefono' class='form-control' placeholder='Telefono *' value =\"".$tel."\"/>
                                         </div> 
                                         <div class='form-group'>
                                             <h6>Adjuntar imagen:</h6>
-                                            <input type='file' name='fileFoto' accept='.jpg,.png'>
+                                            <input type='file' name='fileFoto' accept='.jpg,.png' value =\"".$imag."\">
                                         </div>
                                         <input type='submit' class='btnRegister'  value='Registrar' name='btn'/>
                                         <input type='submit' class='btnRegister'  value='Actualizar' name='btn' style='background: #2ad482'/>
