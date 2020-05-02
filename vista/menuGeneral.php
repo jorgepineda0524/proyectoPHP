@@ -80,10 +80,10 @@ echo"
                         <div class='col-xl-3 col-lg-3 d-none d-lg-block'>
                             <div class='Appointment'>
                                 <div class='book_btn d-none d-lg-block'>
-                                    <label id='nomUsuario'>";
+                                    <label id='nomUsuario' style='color:white'>";
                                     echo "👤 ".$_SESSION['Usu']. " 
                                     </label>
-                                    <a  href='cerrarSesion.php'>Cerrar sesión</a>
+                                    <a  href='cerrarSesion.php' style='border-color: white'>Cerrar sesión</a>
                                 </div>
                             </div>
                         </div>

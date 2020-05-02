@@ -88,7 +88,7 @@
                 <div class="row align-items-center">
 
                     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-                    <div id="map" class="map map-home" style="margin:12px 0 12px 0;height:450px; width: 900px;"></div>
+                    <div id="map" class="map map-home" style="margin:12px 0 12px 0;height:450px; width: 400px;"></div>
                     <script>
                         var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                             osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',

@@ -80,7 +80,7 @@ echo"
                                 <label id='nomUsuario' style='color:white'>";
                                 echo "👤 ".$_SESSION['Usu']. "   
                                 </label>
-                                    <a  href='cerrarSesion.php'>Cerrar sesión</a>
+                                    <a  href='cerrarSesion.php' style='border-color: white'>Cerrar sesión</a>
                                 </div>
                             </div>
                         </div>
