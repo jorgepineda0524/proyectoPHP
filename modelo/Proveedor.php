@@ -9,7 +9,7 @@
         var $fechaRegistro;
         var $fecharInactivo;
         
-    function __construct($codigo,$nombre,$tipoProveedor,$email,$telefono,$fechaRegistro,$imagen){
+    function __construct($codigo,$nombre,$fechaRegistro,$tipoProveedor,$email,$telefono,$imagen){
         $this->codigo=$codigo;
         $this->nombre=$nombre;
         $this->tipoProveedor=$tipoProveedor;  

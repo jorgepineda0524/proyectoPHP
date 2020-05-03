@@ -66,8 +66,7 @@
             $this->objProveedor->setImagen($registro["imagen"]);
             $this->objProveedor->setEmail($registro["email"]);
             $this->objProveedor->setTelefono($registro["telefono"]);
-            $this->objProveedor->setCredito($registro["credito"]);
-            $this->objProveedor->setFechaInactivo($registro["fecha_inactivo"]);
+            
             $objConexion->cerrarBd();
             return $this->objProveedor;
         }

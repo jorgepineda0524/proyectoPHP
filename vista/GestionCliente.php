@@ -3,7 +3,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 if($_SESSION['Usu']==  null)header('Location: ../index.php');
 if($_SESSION['per'] != "admin"){
-    echo "<script>alert('Usted no tiene acceso a esta área')</script>";
+    echo "<script>alert('Usted no tiene acceso a esta área');</script>";
     header('Location: menuGeneral.php');
 }
 include('../control/configBd.php');

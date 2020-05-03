@@ -3,11 +3,61 @@ error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 if($_SESSION['Usu']==  null)header('Location: ../index.php');
 if($_SESSION['per'] != "admin"){
-    echo "<script>alert('Usted no tiene acceso a esta área')</script>";
+    echo "<script>alert('Usted no tiene acceso a esta área');</script>";
     header('Location: menuGeneral.php');
 }
     /* Aquí empieza el recibepost */
+    include('../control/configBd.php');
+    include('../modelo/Proveedor.php');
+    include('../control/ControlProveedor.php');
+    include('../control/ControlConexion.php');
     
+    try{
+        $buscarDocumento=$_POST['txtDocumentoBusc'];
+        $documento=$_POST['txtDocumento'];
+        $nombre=$_POST['txtNombre'];
+        $fecha_regis=$_POST['txtFechaRegistro'];
+        $tipo_proveedor=$_POST['txtTipoProveedor'];
+
+        $foto=$_FILES['fileFoto']['name'];
+        $ruta=$_FILES['fileFoto']['tmp_name'];
+        $destino='fotoProveedor/'.$foto;
+        move_uploaded_file($ruta,$destino);
+
+        $email=$_POST['txtEmail'];
+        $tel=$_POST['txtTelefono'];
+            
+        $boton=$_POST['btn'];
+     
+        if($boton=="Registrar"){
+        $objProveedor=new Proveedor($documento,$nombre,$fecha_regis,$tipo_proveedor,$email,$tel,$destino);
+        $objCtrProveedor =new ControlProveedor($objProveedor);
+        $objCtrProveedor->guardar();
+              
+        } 
+        /*-----------------------Nuevo codigo-----------------------------------------*/
+        if($boton=="Buscar"){
+            $objProveedor=new Proveedor($buscarDocumento,"","","","","","","");
+            $objCtrProveedor =new ControlProveedor($objProveedor);
+            $objProveedor=$objCtrProveedor->consultar();
+            $documento=$buscarDocumento;
+            $nombre=$objProveedor->getNombre();
+            $fechaRegis=$objProveedor->getFechaRegistro();
+            $tipoProveedor=$objProveedor->getTipoProveedor();            
+            $email=$objProveedor->getEmail();
+            $tel=$objProveedor->getTelefono();
+            $imag=$objProveedor->getImagen();
+        }
+        if($boton=="Actualizar"){
+            $objProveedor=new Proveedor($documento,$nombre,$fecha_regis,$tipo_proveedor,$email,$tel,$destino);
+            $objCtrProveedor =new ControlProveedor($objProveedor);
+            $objCtrProveedor->modificar();
+        }
+        /*------------------------------------------------------------------------------*/
+    }
+    catch (Exception $objExp) {
+        echo 'Se presentó una excepción: ',  $objExp->getMessage(), "\n";
+    }   
 
 
     /* Aquí termina el recibe post */
@@ -24,10 +74,10 @@ echo "
 
 
     <link href='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet' id='bootstrap-css'>
-<script src='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
-<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 
-<link rel='stylesheet' type='text/css' href='styleGestion.css'>
+    <link rel='stylesheet' type='text/css' href='styleGestion.css'>
 
 
                  <!-- archivos CSS -->
@@ -102,6 +152,7 @@ echo "
 
 
     <!-- div formulario de gestion de administrado  -->
+    <form method='post' action='GestionProveedor.php' enctype='multipart/form-data'>
     <div class='productivity_area'>
         <div class='container'>
             <div class='row align-items-center'>
@@ -119,67 +170,50 @@ echo "
                             
                         <div class='tab-content' id='myTabContent' >
                             <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
+                                    <div style='width: 200px; float: right'>
+                                        <input type='text' class='form-control' placeholder='Busqueda documento' name='txtDocumentoBusc'/>
+                                        <input type='submit' class='btnRegister'  value='Buscar' name='btn' style='background: #2ad482'/>
+                                    </div>
                                 <h3 class='register-heading' style='color: black'>Datos Proveedor</h3>
                                 <div class='row register-form'>
                                     <div class='col-md-6'>
                                         <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Documento *' name='txtDocumento' />
+                                            <input type='text' class='form-control' placeholder='Documento *' name='txtDocumento' value =\"".$documento."\"/>
                                         </div>
                                         <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Nombre y apellido*' name='txtNombre'/>
+                                            <input type='text' class='form-control' placeholder='Nombre*' name='txtNombre' value =\"".$nombre."\"/>
                                         </div>
                                         <div class='form-group'>
                                             <div>
                                                 <h6>Fecha de ingreso:</h6>
                                             </div>
-                                            <input type='date' class='form-control' name='txtFechaIngreso' >
+                                            <input type='date' class='form-control' name='txtFechaRegistro' value =\"".$fechaRegis."\">
                                         </div>
                                         <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Salario Básico' name='txtSalario'/>
+                                            <h5>Tipo de proveedor:</h5>
+                                            <select class='form-control' name='txtTipoProveedor'>
+                                                <option value =\"".$tipoProveedor."\">".$tipoProveedor."</option>
+                                                <option value='perNatural'>Persona natural</option>
+                                                <option value='perJuridica'>Persona jurídica</option>
+                                            </select>
                                         </div>
-                                        <div class='form-group'>
-                                            <input type='text' class='form-control'  placeholder='Deducción' name='txtDeduccion'/>
-                                        </div>
-                                        <div class='form-group'>
-                                            <div class='maxl'>
-                                                <label class='radio inline'> 
-                                                    <input type='radio' name='chkEmpleado' value='Empleado'>
-                                                    <span> Empleado </span> 
-                                                </label>
-                                                <label class='radio inline'> 
-                                                    <input type='radio' name='chkAdministrador' value='Administrador' checked>
-                                                    <span> Administrador </span> 
-                                                </label>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div class='col-md-6'>
                                         <div class='form-group'>
-                                            <input type='email' class='form-control' placeholder='Email *' name='txtEmail'/>
+                                            <input type='email' class='form-control' placeholder='Email' name='txtEmail' value =\"".$email."\"/>
                                         </div>
                                         <div class='form-group'>
-                                            <input type='text' minlength='10' maxlength='10' name='txtTelefono' class='form-control' placeholder='Telefono *' value=''/>
-                                        </div>
-                                         <div class='form-group'>
-                                            <input type='text' minlength='10' maxlength='10' name='txtCelular' class='form-control' placeholder='Celular' value='' />
-                                        </div>
-                                        <div class='form-group'>
-                                            <select class='form-control' name='txtGenero'>
-                                                <option class='hidden'  selected disabled>Genero</option>
-                                                <option>Masculino</option>
-                                                <option>Femenino</option>
-                                            </select>
-                                        </div>
+                                            <input type='text' minlength='10' maxlength='10' name='txtTelefono' class='form-control' placeholder='Telefono *' value =\"".$tel."\"/>
+                                        </div> 
+                                        
                                         <div class='form-group'>
                                             <h6>Adjuntar foto:</h6>
                                             <input type='file' name='fileFoto' accept='.jpg,.png'>
                                         </div>
-                                        <div class='form-group'>
-                                            <h6>Adjuntar hoja de vida:</h6>
-                                            <input type='file' name='fileHv' accept='.doc,.docx,.pdf'>
-                                        </div>
-                                        <input type='submit' class='btnRegister'  value='Registrar'/>
-                                        <input type='submit' class='btnRegister'  value='Actualizar' style='background: red'/>
+                                        
+                                        <input type='submit' class='btnRegister'  value='Registrar' name='btn'/>
+                                        <input type='submit' class='btnRegister'  value='Actualizar' name='btn' style='background: red'/>
                                     </div>
                                 </div>
                             </div>
@@ -194,6 +228,7 @@ echo "
             </div>
         </div>
     </div>
+    </form>
     <!--/ fin de div para descargar la app  -->
 
     <!-- Aquí inicia el pie de pagina -->
