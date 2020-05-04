@@ -11,6 +11,9 @@ include('../modelo/Usuario.php');
 include('../control/ControlUsuario.php');
 include('../control/ControlConexion.php');
 
+$boton=$_POST['btn'];
+$buscarNommbre=$_POST['txtDocumentoBusc'];
+
 echo "
 <!DOCTYPE html>
 <html class='no-js' lang='zxx'>
@@ -107,12 +110,15 @@ echo "
 
 
     <!-- div formulario de gestion de administrado  -->
-    <form method='post' action='GestionUsuario.php'>
+    <form method='post' action='listaUsuarios.php'>
     
     <div class='productivity_area'>
         <div class='container'>
         <div class='row'  style='margin-top: 50px;'>
                 <div class='col-md-12 text-center'>
+                    <div style='width: 200px; float: right'>
+                        <input type='submit' class='btnRegister'  value='Buscar' name='btn' style='background: #2ad482'/>
+                        <input type='text' class='form-control' placeholder='Busqueda documento' name='txtDocumentoBusc'/>                                        </div></br>
                           <div class='outer-form'>
                     <table class='table-striped table table-bordered vertical'>
                           <thead style='color: white; font-weight: normal; background-color: black;' >
@@ -124,11 +130,20 @@ echo "
                             </tr>
                           </thead>";
                                 
-                                $objUsuario=new Usuario('','','');
-                                $objCtrUsuario =new ControlUsuario($objUsuario);
-                                $listaUsuarios=$objCtrUsuario->listarUsuarios();
+                                if($buscarNommbre==null){
+                                    $objUsuario=new Usuario('','','');
+                                    $objCtrUsuario =new ControlUsuario($objUsuario);
+                                    $resuladoConsulta=$objCtrUsuario->listarUsuarios();
+                                }else {
+                                    $objUsuario1=new Usuario($buscarNommbre,'','');
+                                    $objCtrUsuario1 =new ControlUsuario($objUsuario1);
+                                    $resuladoConsulta=$objCtrUsuario1->consultar();
+                                }
                                 $codigo=1;
-                                while($registros=$listaUsuarios->fetch_assoc()){
+                                
+
+
+                                while($registros=$resuladoConsulta->fetch_assoc()){
                                 
 
                             echo "

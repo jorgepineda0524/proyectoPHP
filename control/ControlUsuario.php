@@ -106,6 +106,23 @@
 
       return $recordSet;
         
+  }
+
+    function consultar(){
+
+      $nombre=$this->objUsuario->getNomUsuario();
+      $objConexion = new ControlConexion();
+      try{
+          $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
+          $comandoSql="SELECT * FROM USUARIO  WHERE NOMBRE='".$nombre."'";
+          $recordSet=$objConexion->ejecutarSelect($comandoSql);
+      } catch (Exception $e){
+        echo "ERROR ".$e->getMessage()."\n";
+        }
+      
+      
+      $objConexion->cerrarBd();
+      return $recordSet;
     }
 
  }
