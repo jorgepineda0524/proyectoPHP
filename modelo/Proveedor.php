@@ -3,21 +3,23 @@
         var $codigo;
         var $nombre;
         var $tipoProveedor;
-        var $email;
         var $telefono;
+        var $email;
         var $imagen;
         var $fechaRegistro;
         var $fecharInactivo;
+        //var $idpersona;
         
     function __construct($codigo,$nombre,$fechaRegistro,$tipoProveedor,$email,$telefono,$imagen){
         $this->codigo=$codigo;
         $this->nombre=$nombre;
         $this->tipoProveedor=$tipoProveedor;  
-        $this->email=$email;
+        $this->email=$email;  
         $this->telefono=$telefono;
         $this->fechaRegistro=$fechaRegistro;
         $this->imagen=$imagen;
         $this->fecharInactivo=null;
+        //$this->idpersona=$idpersona;
      }
 
     function setCodigo($codigo) { $this->codigo = $codigo; }
@@ -28,9 +30,6 @@
 
     function setTipoProveedor($tipoProveedor) { $this->tipoProveedor = $tipoProveedor; }
     function getTipoProveedor() { return $this->tipoProveedor; }
-
-    function setEmail($email) { $this->email = $email; }
-    function getEmail() { return $this->email; }
 
     function setTelefono($telefono) { $this->telefono = $telefono; }
     function getTelefono() { return $this->telefono; }
@@ -43,6 +42,9 @@
 
     function setFechaInactivo($fecharInactivo) { $this->fecharInactivo = $fecharInactivo; }
     function getFechaInactivo() { return $this->fecharInactivo; }
+
+    function setEmail($email) { $this->email = $email; }
+    function getEmail() { return $this->email; }
 
     }
 ?>

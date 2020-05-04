@@ -7,7 +7,65 @@ if($_SESSION['per'] != "admin"){
     header('Location: menuGeneral.php');
 }
     /* Aquí empieza el recibepost */
+    include('../control/configBd.php');
+    include('../modelo/Empleado.php');
+    include('../control/ControlEmpleado.php');
+    include('../control/ControlConexion.php');
+
+    try{
+        $buscarDocumento=$_POST['txtDocumentoBusc'];
+        $documento=$_POST['txtDocumento'];
+        $nombre=$_POST['txtNombre'];
+        $fecha_regis=$_POST['txtFechaIngreso'];
+        $salario=$_POST['txtSalario'];
+        $deduccion=$_POST['txtDeduccion'];
+        //$f_inac=$_POST['txtFechaInactivo'];
+        $foto=$_FILES['fileFoto']['name'];
+        $ruta=$_FILES['fileFoto']['tmp_name'];
+        $hv=$_FILES['fileHv']['name'];
+        $rutahv=$_FILES['fileHv']['tmp_name'];
+        $destinofoto='fotoEmpleado/'.$foto;
+        move_uploaded_file($ruta,$destinofoto);
+        $destinoHV='fotoEmpleado/'.$hv;
+        move_uploaded_file($rutahv,$destinoHV);
+        $email=$_POST['txtEmail'];
+        $tel=$_POST['txtTelefono'];
+        $celular=$_POST['txtCelular'];
     
+        $boton=$_POST['btn'];
+     
+        if($boton=="Registrar"){
+        $objEmpleado=new Empleado($documento,$nombre,$fecha_regis,$salario,$deduccion,$destinofoto,$destinoHV,$email,$tel,$celular);
+        $objCtrEmpleado =new ControlEmpleado($objEmpleado);
+        $objCtrEmpleado->guardar();
+              
+        }
+        /*-----------------------Nuevo codigo-----------------------------------------*/
+        if($boton=="Buscar"){
+            $objEmpleado=new Empleado($buscarDocumento,"","","","","","","","","");
+            $objCtrEmpleado =new ControlEmpleado($objEmpleado);
+            $objEmpleado=$objCtrEmpleado->consultar();
+            $documento=$objEmpleado->getCodigo();
+            $nombre=$objEmpleado->getNombre();
+            $fechaIngreso=$objEmpleado->getFechaIngreso();
+            $salario=$objEmpleado->getSalarioBasico();
+            $deduccion=$objEmpleado->getDeduccion();
+            $foto=$objEmpleado->getFoto();
+            $hojaDeVida=$objEmpleado->getHojaDeVida();
+            $email=$objEmpleado->getEmail();
+            $telefono=$objEmpleado->getTelefono();
+            $celular=$objEmpleado->getCelular();
+        }
+        if($boton=="Actualizar"){
+            $objEmpleado=new Empleado($documento,$nombre,$fecha_regis,$salario,$deduccion,$destinofoto,$destinoHV,$email,$tel,$celular);
+            $objCtrEmpleado =new ControlEmpleado($objEmpleado);
+            $objCtrEmpleado->modificar();
+        }
+        /*------------------------------------------------------------------------------*/
+    }
+    catch (Exception $objExp) {
+        echo 'Se presentó una excepción: ',  $objExp->getMessage(), "\n";
+    }
 
 
     /* Aquí termina el recibe post */
@@ -68,7 +126,7 @@ echo "
                                             <ul class='submenu'>
                                                  <li><a href='GestionEmpleado.php'>Empleado</a></li>
                                                  <li><a href='GestionProveedor.php'>Proveedor</a></li>
-                                                 <li><a href='GestionCliente.php'>Cliente</a></li>
+                                                 <li><a href='GestionEmpleado.php'>Empleado</a></li>
                                                  <li><a href='GestionProducto.php'>Producto</a></li>
                                             </ul>
                                         </li>
@@ -98,84 +156,71 @@ echo "
     </header>
 
     <!-- div formulario de gestion de administrador  -->
+   <form method='post' action='GestionEmpleado.php' enctype='multipart/form-data'>
     <div class='productivity_area'>
         <div class='container'>
             <div class='row align-items-center'>
                 <div class='container register'>
-                <div class='row'>
-                    <div class='col-md-3 register-left'>
-                        <img src='https://www.pinclipart.com/picdir/big/90-900518_subscribe-now-employees-provident-fund-organisation-clipart.png' alt=''/>
+                    <div class='row'>
+                        <div class='col-md-3 register-left'>
+                            <img src='https://www.pinclipart.com/picdir/big/90-900518_subscribe-now-employees-provident-fund-organisation-clipart.png' alt='' />
 
-                        <h3>Formulario Admin</h3>
-                        <p style='color: white'>Formulario para ingreso o actualizacion de Clientes, Empleados, Proveedores y Productos</p>
-                        
-                    </div>
-                    <div class='col-md-9 register-right'>
-               
+                            <h3>Formulario Admin</h3>
+                            <p style='color: white'>Formulario para ingreso o actualizacion de Empleados, Empleados, Proveedores y Productos</p>
 
-                    
-                            
-                        <div class='tab-content' id='myTabContent' >
-                            <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
-                                <h3 class='register-heading' style='color: black'>Datos Empleado</h3>
-                                <div class='row register-form'>
-                                    <div class='col-md-6'>
-                                        <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Documento *' name='txtDocumento' />
-                                        </div>
-                                        <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Nombre y apellido*' name='txtNombre'/>
-                                        </div>
-                                        <div class='form-group'>
-                                            <div>
-                                                <h6>Fecha de ingreso:</h6>
+                        </div>
+                        <div class='col-md-9 register-right'>
+
+                            <div class='tab-content' id='myTabContent'>
+                                <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
+                                <div style='width: 200px; float: right'>
+                                <input type='submit' class='btnRegister'  value='Buscar' name='btn' style='background: #2ad482'/>
+                                <input type='text' class='form-control' placeholder='Busqueda documento' name='txtDocumentoBusc'/>
+                                </div> 
+                                    <h3 class='register-heading' style='color: black'>Datos Empleado</h3>
+                                    <div class='row register-form'>
+                                        <div class='col-md-6'>
+                                            <div class='form-group'>
+                                                <input type='text' class='form-control' placeholder='Documento *' name='txtDocumento' value =\"".$documento."\"/>
                                             </div>
-                                            <input type='date' class='form-control' name='txtFechaIngreso' >
-                                        </div>
-                                        <div class='form-group'>
-                                            <input type='text' class='form-control' placeholder='Salario Básico' name='txtSalario'/>
-                                        </div>
-                                        <div class='form-group'>
-                                            <input type='text' class='form-control'  placeholder='Deducción' name='txtDeduccion'/>
-                                        </div>
-                                        <div class='form-group'>
-                                            <div class='maxl'>
-                                                <label class='radio inline'> 
-                                                    <input type='radio' name='chkEmpleado' value='Empleado'>
-                                                    Empleado 
-                                                    <input type='radio' name='chkAdministrador' value='Administrador'>
-                                                    Administrador
-                                                </label>
+                                            <div class='form-group'>
+                                                <input type='text' class='form-control' placeholder='Nombre y apellido*' name='txtNombre' value =\"".$nombre."\"/>
+                                            </div>
+                                            <div class='form-group'>
+                                                <div>
+                                                    <h6>Fecha de ingreso:</h6>
+                                                </div>
+                                                <input type='date' class='form-control' name='txtFechaIngreso' value =\"".$fechaIngreso."\">
+                                            </div>
+                                            <div class='form-group'>
+                                                <input type='text' class='form-control' placeholder='Salario Básico' name='txtSalario' value =\"".$salario."\"/>
+                                            </div>
+                                            <div class='form-group'>
+                                                <input type='text' class='form-control' placeholder='Deducción' name='txtDeduccion' value =\"".$deduccion."\"/>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class='col-md-6'>
-                                        <div class='form-group'>
-                                            <input type='email' class='form-control' placeholder='Email *' name='txtEmail'/>
+                                        <div class='col-md-6'>
+                                            <div class='form-group'>
+                                                <input type='email' class='form-control' placeholder='Email *' name='txtEmail' value =\"".$email."\"/>
+                                            </div>
+                                            <div class='form-group'>
+                                                <input type='text' name='txtTelefono' class='form-control' placeholder='Telefono *'value =\"".$telefono."\" />
+                                            </div>
+                                            <div class='form-group'>
+                                                <input type='text' name='txtCelular' class='form-control' placeholder='Celular' value =\"".$celular."\"/>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <h6>Adjuntar foto:</h6>
+                                                <input type='file' name='fileFoto' accept='.jpg,.png' value =\"".$foto."\">
+                                            </div>
+                                            <div class='form-group'>
+                                                <h6>Adjuntar hoja de vida:</h6>
+                                                <input type='file' name='fileHv' accept='.doc,.docx,.pdf' value =\"".$hojaDeVida."\">
+                                            </div>
+                                            <input type='submit' class='btnRegister' value='Registrar' name='btn'/>
+                                            <input type='submit' class='btnRegister' value='Actualizar' style='background: red' name='btn'/>
                                         </div>
-                                        <div class='form-group'>
-                                            <input type='text' minlength='10' maxlength='10' name='txtTelefono' class='form-control' placeholder='Telefono *' value=''/>
-                                        </div>
-                                         <div class='form-group'>
-                                            <input type='text' minlength='10' maxlength='10' name='txtCelular' class='form-control' placeholder='Celular' value='' />
-                                        </div>
-                                        <div class='form-group'>
-                                            <select class='form-control' name='txtGenero'>
-                                                <option class='hidden'  selected disabled>Genero</option>
-                                                <option>Masculino</option>
-                                                <option>Femenino</option>
-                                            </select>
-                                        </div>
-                                        <div class='form-group'>
-                                            <h6>Adjuntar foto:</h6>
-                                            <input type='file' name='fileFoto' accept='.jpg,.png'>
-                                        </div>
-                                        <div class='form-group'>
-                                            <h6>Adjuntar hoja de vida:</h6>
-                                            <input type='file' name='fileHv' accept='.doc,.docx,.pdf'>
-                                        </div>
-                                        <input type='submit' class='btnRegister'  value='Registrar'/>
-                                        <input type='submit' class='btnRegister'  value='Actualizar' style='background: red'/>
                                     </div>
                                 </div>
                             </div>
@@ -183,10 +228,9 @@ echo "
                     </div>
                 </div>
             </div>
-
-            </div>
         </div>
     </div>
+</form>
     <!--/ fin de div para descargar la app  -->
 
     <!-- Aquí inicia el pie de pagina -->

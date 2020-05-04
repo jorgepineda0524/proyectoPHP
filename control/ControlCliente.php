@@ -21,8 +21,8 @@ class ControlCliente {
 		$objConexion = new ControlConexion();
 		$objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
         $comandoSql="INSERT INTO CLIENTE(DOCUMENTO,NOMBRE,TIPO,FECHA_REGISTRO,
-		IMAGEN,EMAIL,TELEFONO,CUPO) VALUES('".$documento."','".$nombre."','".$tipoCliente."','".$fechaRegistro."',
-		'".$imagen."','".$email."','".$telefono."','".$cupo."')";
+		IMAGEN,EMAIL,TELEFONO,CUPO,IDPERSONA) VALUES('".$documento."','".$nombre."','".$tipoCliente."','".$fechaRegistro."',
+		'".$imagen."','".$email."','".$telefono."','".$cupo."',2)";
 		$objConexion->ejecutarComandoSql($comandoSql);
 		$objConexion->cerrarBd();
 	}
@@ -41,7 +41,7 @@ class ControlCliente {
 		$objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
         $comandoSql="UPDATE CLIENTE SET NOMBRE='".$nombre."',TIPO='".$tipoCliente."',
 			FECHA_REGISTRO='".$fechaRegistro."',IMAGEN='".$imagen."',EMAIL='".$email."',
-			TELEFONO='".$telefono."',CUPO='".$cupo."' WHERE DOCUMENTO='".$documento."'";
+			TELEFONO='".$telefono."',CUPO='".$cupo."',IDPERSONA=2  WHERE DOCUMENTO='".$documento."'";
 		$objConexion->ejecutarComandoSql($comandoSql);
 		$objConexion->cerrarBd();
 	}

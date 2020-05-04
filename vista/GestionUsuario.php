@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 session_start();
-if($_SESSION['Usu']==  null)header('Location: ../index.php');
-if($_SESSION['per'] != "admin"){
+//if($_SESSION['Usu']==  null)header('Location: ../index.php');
+if($_SESSION['per'] != ""){
     echo "<script>alert('Usted no tiene acceso a esta área')</script>";
     header('Location: menuGeneral.php');
 }
@@ -14,12 +14,12 @@ include('../control/ControlConexion.php');
 try{
     $nomUusario=$_POST['txtNomUsu'];
     $contrasena=$_POST['txtContrasena'];
-    $contra_cifrada=password_hash($contrasena, PASSWORD_DEFAULT);
+    //$contra_cifrada=password_hash($contrasena, PASSWORD_DEFAULT);
     $perfil=$_POST['txtPerfil'];
     $boton=$_POST['btn'];
  
     if($boton=="Registrar"){
-    $objUsuario=new Usuario($nomUusario,$contra_cifrada,$perfil);
+    $objUsuario=new Usuario($nomUusario,/*$contra_cifrada*/$contrasena,$perfil);
     $objCtrUsuario =new ControlUsuario($objUsuario);
     $objCtrUsuario->guardar();
     header('Location: usuarioGuardado.php');

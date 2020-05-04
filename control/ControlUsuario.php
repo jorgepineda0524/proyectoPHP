@@ -23,13 +23,13 @@
                     $objUsuario1->setContrasena($registro['contrasena']);
                     $this->objUsuario->setTipoUsuario($registro['perfil']);
             
-                    if(!password_verify($this->objUsuario->getContrasena(),$objUsuario1->getContrasena())){
+                   /* if(!password_verify($this->objUsuario->getContrasena(),$objUsuario1->getContrasena())){
                         return false;
                     }
                      if($this->objUsuario->getNomUsuario()!=$objUsuario1->getNomUsuario() || $this->objUsuario->getNomUsuario() == "" ||
                           $this->objUsuario->getContrasena() == ""){
                               return false;
-                        }
+                        }*/
     
                 } catch (Exception $e){
                     echo "ERROR ".$e->getMessage()."\n";

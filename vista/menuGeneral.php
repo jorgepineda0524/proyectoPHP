@@ -71,7 +71,7 @@ echo"
                                                  <li><a href=''>Lista de productos</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href='menuAdmin.php'>Gestión Admin</a></li>
+                                        
                                         <li><a href='Ubicacion.php'>🌍Mapa</a></li>
                                     </ul>
                                 </nav>
@@ -91,7 +91,7 @@ echo"
                             <div class='mobile_menu d-block d-lg-none'></div>
                         </div>
                     </div>
-
+                    
                 </div>
             </div>
         </div>

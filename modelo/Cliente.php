@@ -21,6 +21,7 @@ class Cliente{
         $this->telefono=$telefono;
         $this->credito=$credito;
     }
+    
     function setCodigo($codigo) { $this->codigo = $codigo; }
     function getCodigo() { return $this->codigo; }
 

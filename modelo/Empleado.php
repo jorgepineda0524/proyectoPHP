@@ -19,7 +19,7 @@
             $this->fechaIngreso=$fechaIngreso;
             $this->fechaRetiro=null;
             $this->salarioBasico=$salarioBasico;
-            $this->deduccion=$deduccion:
+            $this->deduccion=$deduccion;
             $this->foto=$foto;
             $this->hojaDeVida=$hojaDeVida;
             $this->email=$email;
@@ -39,8 +39,8 @@
         function setFechaRetiro($fechaRetiro) { $this->fechaRetiro = $fechaRetiro; }
         function getFechaRetiro() { return $this->fechaRetiro; }
 
-        function setSalarioBasico($salarioBasico) { $this->SalarioBasico = $salarioBasico; }
-        function getSalarioBasico() { return $this->SalarioBasico; }
+        function setSalarioBasico($salarioBasico) { $this->salarioBasico = $salarioBasico; }
+        function getSalarioBasico() { return $this->salarioBasico; }
         
         function setDeduccion($deduccion) { $this->deduccion = $deduccion; }
         function getDeduccion() { return $this->deduccion; }
@@ -57,7 +57,7 @@
         function setTelefono($telefono) { $this->telefono = $telefono; }
         function getTelefono() { return $this->telefono; }
         
-        function setCelular($celular) { $this->celular = $credito; }
+        function setCelular($celular) { $this->celular = $celular; }
         function getCelular() { return $this->celular
             ; }
 

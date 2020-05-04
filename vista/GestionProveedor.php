@@ -18,13 +18,13 @@ if($_SESSION['per'] != "admin"){
         $nombre=$_POST['txtNombre'];
         $fecha_regis=$_POST['txtFechaRegistro'];
         $tipo_proveedor=$_POST['txtTipoProveedor'];
-
+        $email=$_POST['txtEmail'];
         $foto=$_FILES['fileFoto']['name'];
         $ruta=$_FILES['fileFoto']['tmp_name'];
         $destino='fotoProveedor/'.$foto;
         move_uploaded_file($ruta,$destino);
 
-        $email=$_POST['txtEmail'];
+        //$email=$_POST['txtEmail'];
         $tel=$_POST['txtTelefono'];
             
         $boton=$_POST['btn'];
@@ -37,7 +37,7 @@ if($_SESSION['per'] != "admin"){
         } 
         /*-----------------------Nuevo codigo-----------------------------------------*/
         if($boton=="Buscar"){
-            $objProveedor=new Proveedor($buscarDocumento,"","","","","","","");
+            $objProveedor=new Proveedor($buscarDocumento,"","","","","","");
             $objCtrProveedor =new ControlProveedor($objProveedor);
             $objProveedor=$objCtrProveedor->consultar();
             $documento=$buscarDocumento;
@@ -213,7 +213,7 @@ echo "
                                         </div>
                                         
                                         <input type='submit' class='btnRegister'  value='Registrar' name='btn'/>
-                                        <input type='submit' class='btnRegister'  value='Actualizar' name='btn' style='background: red'/>
+                                        <input type='submit' class='btnRegister'  value='Actualizar' name='btn' style='background: #2ad482'/>
                                     </div>
                                 </div>
                             </div>
