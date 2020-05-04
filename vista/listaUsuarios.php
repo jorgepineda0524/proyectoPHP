@@ -118,7 +118,7 @@ echo "
                 <div class='col-md-12 text-center'>
                     <div style='width: 200px; float: right'>
                         <input type='submit' class='btnRegister'  value='Buscar' name='btn' style='background: #2ad482'/>
-                        <input type='text' class='form-control' placeholder='Busqueda documento' name='txtDocumentoBusc'/>                                        </div></br>
+                        <input type='text' class='form-control' placeholder='Nombre de usuario' name='txtDocumentoBusc'/>                                        </div></br>
                           <div class='outer-form'>
                     <table class='table-striped table table-bordered vertical'>
                           <thead style='color: white; font-weight: normal; background-color: black;' >
