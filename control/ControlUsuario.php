@@ -11,7 +11,8 @@
             //$esValido=false;
                   $objUsuario1 = new Usuario('','','');
 			      $usu= $this->objUsuario->getNomUsuario();
-			      $con=$this->objUsuario->getContrasena();
+            $con=$this->objUsuario->getContrasena();
+            $est=$this->objUsuario->getEstado();
 			      $objConexion = new ControlConexion();
             
                   try{
@@ -21,6 +22,7 @@
                     $registro = $recordSet->fetch_array(MYSQLI_BOTH);
                     $objUsuario1->setNomUsuario($registro['nombre']);
                     $objUsuario1->setContrasena($registro['contrasena']);
+                    $this->objUsuario->setTipoUsuario($registro['estado']);
                     $this->objUsuario->setTipoUsuario($registro['perfil']);
             
                    /* if(!password_verify($this->objUsuario->getContrasena(),$objUsuario1->getContrasena())){
@@ -46,10 +48,11 @@
           $usu= $this->objUsuario->getNomUsuario();
           $con=$this->objUsuario->getContrasena();
           $tusu= $this->objUsuario->getTipoUsuario();
+          $est=$this->objUsuario->getEstado();
 
           try{
               $objConexion = new ControlConexion();
-              $cmdSql="INSERT INTO usuario(nombre,contrasena,perfil) values('".$usu."','".$con."','".$tusu."')";
+              $cmdSql="INSERT INTO usuario(nombre,contrasena,perfil,estado) values('".$usu."','".$con."','".$tusu."','".$est."')";
               $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
               //$objConexion->abrirBd("localhost","root","","bdproyectoaula");
               $objConexion->ejecutarComandoSql($cmdSql);
@@ -65,9 +68,9 @@
       function  listarUsuarios(){
         //$esValido=false;
         
-        $usuario= $this->objUsuario->getNomUsuario();
+        /* $usuario= $this->objUsuario->getNomUsuario();
         $contraseña=$this->objUsuario->getContrasena();
-        $perfil=$this->objUsuario->getTipoUsuario();
+        $perfil=$this->objUsuario->getTipoUsuario(); */
         $objConexion = new ControlConexion();
         
         try{
@@ -115,6 +118,25 @@
       try{
           $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
           $comandoSql="SELECT * FROM USUARIO  WHERE NOMBRE='".$nombre."'";
+          $recordSet=$objConexion->ejecutarSelect($comandoSql);
+      } catch (Exception $e){
+        echo "ERROR ".$e->getMessage()."\n";
+        }
+      
+      
+      $objConexion->cerrarBd();
+      return $recordSet;
+    }
+
+    function cambiarEstado($est,$nom){
+      $this->estado=$est;
+      $this->nombre=$nom;
+
+      /* $nombre=$this->objUsuario->getNomUsuario(); */
+      $objConexion = new ControlConexion();
+      try{
+          $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
+          $comandoSql="UPDATE USUARIO SET ESTADO='".$this->estado."' WHERE NOMBRE ='".$this->nombre."'";
           $recordSet=$objConexion->ejecutarSelect($comandoSql);
       } catch (Exception $e){
         echo "ERROR ".$e->getMessage()."\n";

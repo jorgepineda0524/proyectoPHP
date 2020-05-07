@@ -143,7 +143,7 @@ echo "
                                 
 
 
-                                while($registros=$resuladoConsulta->fetch_assoc()){
+                                while($registros=$resuladoConsulta->fetch_array()){
                                 
 
                             echo "
@@ -151,11 +151,22 @@ echo "
                           <tbody style='border:1px solid #807e7e; background-color:#242424; color:#A1A6AB; text-align: left;'>
                             <tr>
                               <td style='padding: 14px; text-align: center;'>"; echo $codigo."</td>
-                              <td style='text-align: center;'>";echo $registros['nombre']."</td>
-                              <td style='text-align: center;'>";echo $registros['perfil']."</td>
+                              <td style='text-align: center;'>";echo $registros[0]."</td>
+                              <td style='text-align: center;'>";echo $registros[2]."</td>
                               <td style='text-align: center;'>
                                <label class='switch'>
-                               <input type='checkbox' checked>
+                               ";                                     
+                               if($registros[3]=="Activo"){
+                                echo"
+                                <input type='checkbox' id='checkbox-act' checked>
+                                ";
+                                }else{
+                                    echo"
+                                    <input type='checkbox' id='checkbox'>
+                                    ";
+                                }
+                                
+                                echo"
                                <span class='slider round'></span>
                                </label>
                               </td>
@@ -198,6 +209,19 @@ echo "
     <script src='js/jquery.slicknav.min.js'></script>
     <script src='js/jquery.magnific-popup.min.js'></script>
     <script src='js/main.js'></script>
+
+    <script src='jquery-3.5.1.min.js'></script>
+
+    <!-- <script type='text/javascript'>
+        function actualizarEstado(estado){
+                $.ajax({
+                    type: 'POST',
+                    url:'../control/ControlUsuario.php',
+                    data: datos,
+                    succes: function(){}
+                })
+            }
+    </script> -->
 </body>
 
 </html>

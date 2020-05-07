@@ -4,11 +4,13 @@
         var $nomUsuario;
         var $contrasena;
         var $tipoUsuario;
+        var $estado;
 
     function __construct($nomUsuario,$contrasena,$tipoUsuario){
 	    $this->nomUsuario= $nomUsuario;
         $this->contrasena = $contrasena;	
         $this->tipoUsuario = $tipoUsuario;
+        $this->estado="Activo";
      }
 
 
@@ -20,6 +22,9 @@
 
     function getTipoUsuario() {return $this->tipoUsuario;}
     function setTipoUsuario($tipoUsuario) {$this->tipoUsuario = $tipoUsuario;}
+
+    function getEstado() {return $this->estado;}
+    function setEstado($estado) {$this->estado = $estado;}
 }
     
 ?>
