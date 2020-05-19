@@ -9,7 +9,7 @@
 
        function  validarIngreso(){
             //$esValido=false;
-                  $objUsuario1 = new Usuario('','','');
+                  $objUsuario1 = new Usuario('','','','');
 			      $usu= $this->objUsuario->getNomUsuario();
             $con=$this->objUsuario->getContrasena();
             $est=$this->objUsuario->getEstado();
@@ -145,6 +145,28 @@
       
       $objConexion->cerrarBd();
       return $recordSet;
+    }
+
+    function consultarPagina(){
+  
+    
+      $pagina= $this->objUsuario->getPagina();
+      $objConexion = new ControlConexion();
+      
+      try{
+          $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
+          $comandoSql="SELECT * FROM USUARIO LIMIT $pagina,3";
+          $recordSet=$objConexion->ejecutarSelect($comandoSql);
+          
+  
+      } catch (Exception $e){
+        echo "ERROR ".$e->getMessage()."\n";
+        }
+        
+        $objConexion->cerrarBd();
+  
+        return $recordSet;
+          
     }
 
  }

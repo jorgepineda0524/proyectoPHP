@@ -5,12 +5,14 @@
         var $contrasena;
         var $tipoUsuario;
         var $estado;
+        var $pagina;
 
-    function __construct($nomUsuario,$contrasena,$tipoUsuario){
+    function __construct($nomUsuario,$contrasena,$tipoUsuario,$pagina){
 	    $this->nomUsuario= $nomUsuario;
         $this->contrasena = $contrasena;	
         $this->tipoUsuario = $tipoUsuario;
         $this->estado="Activo";
+        $this->pagina=$pagina;
      }
 
 
@@ -25,6 +27,9 @@
 
     function getEstado() {return $this->estado;}
     function setEstado($estado) {$this->estado = $estado;}
+
+    function getPagina() {return $this->pagina;}
+    function setPagina($pagina) {$this->pagina = $pagina;}
 }
     
 ?>

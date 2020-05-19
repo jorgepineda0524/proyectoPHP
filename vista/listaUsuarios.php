@@ -6,13 +6,49 @@ if($_SESSION['per'] != "admin"){
     echo "<script>alert('Usted no tiene acceso a esta área')</script>";
     header('Location: menuGeneral.php');
 }
+if(!$_GET){
+    header('Location: listaUsuarios.php?pagina=1');
+}
+
 include('../control/configBd.php');
 include('../modelo/Usuario.php');
 include('../control/ControlUsuario.php');
 include('../control/ControlConexion.php');
 
+
 $boton=$_POST['btn'];
+
+if($boton=="Editar"){
+    header('Location: GestionUsuario.php');
+  
+}
 $buscarNommbre=$_POST['txtDocumentoBusc'];
+
+if($buscarNommbre==null){
+    $objUsuario=new Usuario('','','','');
+    $objCtrUsuario =new ControlUsuario($objUsuario);
+    $resuladoConsulta=$objCtrUsuario->listarUsuarios();
+}else {
+    $objUsuario1=new Usuario($buscarNommbre,'','','');
+    $objCtrUsuario1 =new ControlUsuario($objUsuario1);
+    $resuladoConsulta=$objCtrUsuario1->consultar();
+}
+    $usuarios_x_pagina = 3;
+    
+
+    $iniciar= (string)(($_GET['pagina']-1)*$usuarios_x_pagina);
+
+    $objUsuario2=new Usuario('','','',$iniciar);
+    $objCtrUsuario2 =new ControlUsuario($objUsuario2);
+    $result_pagina = $objCtrUsuario2->consultarPagina();
+
+    //$result_usuarios = $result_pagina->fetchAll();
+
+    $codigo=1;
+
+    $totalUsuarios_db = mysqli_num_rows($resuladoConsulta);
+    $paginas = $totalUsuarios_db/3;
+    $paginas = ceil($paginas);
 
 echo "
 <!DOCTYPE html>
@@ -48,6 +84,7 @@ echo "
     <link rel='stylesheet' href='css/font-awesome.min.css'>
     <link rel='stylesheet' href='css/themify-icons.css'>
 
+    
     
 </head>
 
@@ -108,8 +145,12 @@ echo "
         </div>
     </header>
 
-
     <!-- div formulario de gestion de administrado  -->
+
+    
+
+
+
     <form method='post' action='listaUsuarios.php'>
     
     <div class='productivity_area'>
@@ -117,33 +158,28 @@ echo "
         <div class='row'  style='margin-top: 50px;'>
                 <div class='col-md-12 text-center'>
                     <div style='width: 200px; float: right'>
-                        <input type='submit' class='btnRegister'  value='Buscar' name='btn' style='background: #2ad482'/>
-                        <input type='text' class='form-control' placeholder='Nombre de usuario' name='txtDocumentoBusc'/>                                        </div></br>
-                          <div class='outer-form'>
+                        <div class='input-group input-group-sm mb-3'>
+                            <input type='text' class='form-control' placeholder='Nombre de usuario' name='txtDocumentoBusc'/>
+                            <input type='submit' class='btn btn-success'  value='Buscar' name='btn' />
+                        </div>
+                      </br>
+                        </div>
+                        <div class='outer-form'>
+                        
                     <table class='table-striped table table-bordered vertical'>
                           <thead style='color: white; font-weight: normal; background-color: black;' >
                             <tr>
                               <th  class='head'>Código</th>
                               <th  class='head'>Nombre de Usuario</th>
                               <th  class='head'>Perfil</th>
-                              <th  class='head'>Status</th>
+                              <th  class='head'>Estado</th>
+                              <th  class='head'>Acción</th>
                             </tr>
                           </thead>";
                                 
-                                if($buscarNommbre==null){
-                                    $objUsuario=new Usuario('','','');
-                                    $objCtrUsuario =new ControlUsuario($objUsuario);
-                                    $resuladoConsulta=$objCtrUsuario->listarUsuarios();
-                                }else {
-                                    $objUsuario1=new Usuario($buscarNommbre,'','');
-                                    $objCtrUsuario1 =new ControlUsuario($objUsuario1);
-                                    $resuladoConsulta=$objCtrUsuario1->consultar();
-                                }
-                                $codigo=1;
                                 
-
-
-                                while($registros=$resuladoConsulta->fetch_array()){
+                                
+                                while($registros=$result_pagina->fetch_array()){
                                 
 
                             echo "
@@ -154,21 +190,26 @@ echo "
                               <td style='text-align: center;'>";echo $registros[0]."</td>
                               <td style='text-align: center;'>";echo $registros[2]."</td>
                               <td style='text-align: center;'>
-                               <label class='switch'>
+                               <label class='switch' >
                                ";                                     
                                if($registros[3]=="Activo"){
                                 echo"
-                                <input type='checkbox' id='checkbox-act' checked>
+                                <input type='checkbox' id='checkbox-act' checked disabled>
                                 ";
                                 }else{
                                     echo"
-                                    <input type='checkbox' id='checkbox'>
+                                    <input type='checkbox' id='checkbox' disabled>
                                     ";
                                 }
                                 
                                 echo"
                                <span class='slider round'></span>
                                </label>
+                              </td>
+                              <td style='text-align: center;'>
+                              
+                                <button style='background: transparent; border-color: transparent' name='btn' value='Editar' ><i class ='glyphicon glyphicon-edit btn btn-primary' title='Editar' ></i></button>
+                                <i class='glyphicon glyphicon-trash btn btn-danger' title='Eliminar'></i>
                               </td>
                             </tr>";
                                 $codigo++;
@@ -177,15 +218,43 @@ echo "
                                 
                           </tbody>
                         </table>
+                        <nav aria-label='Page navigation example'>
+                            <ul class='pagination'>
+                                <li class='page-item "; echo $_GET['pagina']<=1 ? 'disabled' : ''; echo "'>
+                                    <a class='page-link' href='listaUsuarios.php?pagina=";echo $_GET['pagina']-1;echo "' aria-label='Anterior'>
+                                        <span aria-hidden='true'>&laquo;</span>
+                                    </a>
+                                </li>";
+                                
+                                for($i=0;$i<$paginas;$i++){
+
+                                echo "
+                                <li class='page-item "; echo $_GET['pagina']==$i+1 ? 'active' : ''; echo "'>
+                                    <a class='page-link' href='listaUsuarios.php?pagina="; echo $i+1; echo "'>"; echo $i+1; echo "</a>
+                                </li>";
+                                }
+                                echo "
+                                <li class='page-item "; echo $_GET['pagina']>=$paginas ? 'disabled' : ''; echo "'>
+                                    <a class='page-link' href='listaUsuarios.php?pagina=";echo $_GET['pagina']+1;echo "' aria-label='Siguiente'>
+                                        <span aria-hidden='true'>&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                       </div>
+                      
                   </div>
               </div>
         </div>
     </div>
-    </form>
-    <!--/ fin de div para descargar la app  -->
 
-    <!-- Aquí inicia el pie de pagina -->
+    
+
+    </form>
+
+
+    
+
     <footer class='footer'>
         <div class='copy-right_text'>
             <div class='container'>
@@ -223,6 +292,8 @@ echo "
             }
     </script> -->
 </body>
+
+
 
 </html>
 ";
