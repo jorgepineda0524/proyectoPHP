@@ -12,7 +12,7 @@ try{
     $bot=$_POST["btn"];
  
     if($bot=="Login"){
-    $objUsuario=new Usuario($usu,$con,"");
+    $objUsuario=new Usuario($usu,$con,"","");
     $objCtrUsuario =new ControlUsuario($objUsuario);
         if($objCtrUsuario->validarIngreso()){
             $_SESSION['Usu']=  $usu;

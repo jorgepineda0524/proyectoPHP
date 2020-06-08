@@ -7,46 +7,46 @@ if($_SESSION['per'] != "admin"){
     header('Location: menuGeneral.php');
 }
 if(!$_GET){
-    header('Location: listaProductos.php?pagina=1');
+    header('Location: listaEmpleados.php?pagina=1');
 }
 
 include('../control/configBd.php');
-include('../modelo/Producto.php');
-include('../control/ControlProducto.php');
+include('../modelo/Empleado.php');
+include('../control/ControlEmpleado.php');
 include('../control/ControlConexion.php');
 
 
 $boton=$_POST['btn'];
 
 if($boton=="Editar"){
-    header('Location: GestionProducto.php');
+    header('Location: GestionEmpleado.php');
 }
-$buscarXcodigo=$_POST['txtDocumentoBusc'];
+$buscarXdocumento=$_POST['txtDocumentoBusc'];
 
-if($buscarXcodigo==null){
-    $objProducto=new Producto('','','','');
-    $objCtrProducto =new ControlProducto($objProducto);
-    $resuladoConsulta=$objCtrProducto->listarProductos();
+if($buscarXdocumento==null){
+    $objEmpleado=new Empleado('','','','','','','','','','','','');
+    $objCtrEmpleado =new ControlEmpleado($objEmpleado);
+    $resuladoConsulta=$objCtrEmpleado->listarEmpleados();
 }else {
-    $objProducto1=new Producto($buscarXcodigo,'','','');
-    $objCtrProducto1 =new ControlProducto($objProducto1);
-    $resuladoConsulta=$objCtrProducto1->consultar();
+    $objEmpleado1=new Empleado($buscarXdocumento,'','','','','','','','','','');
+    $objCtrEmpleado1 =new ControlEmpleado($objEmpleado1);
+    $resuladoConsulta=$objCtrEmpleado1->consultar();
 }
-    $Productos_x_pagina = 5;
+    $Empleados_x_pagina = 5;
     
 
-    $iniciar= (string)(($_GET['pagina']-1)*$Productos_x_pagina);
+    $iniciar= (string)(($_GET['pagina']-1)*$Empleados_x_pagina);
 
-    $objProducto2=new Producto('','','',$iniciar);
-    $objCtrProducto2 =new ControlProducto($objProducto2);
-    $result_pagina = $objCtrProducto2->consultarPagina();
+    $objEmpleado2=new Empleado('','','','','','','','','','',$iniciar);
+    $objCtrEmpleado2 =new ControlEmpleado($objEmpleado2);
+    $result_pagina = $objCtrEmpleado2->consultarPagina();
 
     //$result_usuarios = $result_pagina->fetchAll();
 
     $codigo=1;
 
-    $totalProducto_db = mysqli_num_rows($resuladoConsulta);
-    $paginas = $totalProducto_db/5;
+    $totalEmpleado_db = mysqli_num_rows($resuladoConsulta);
+    $paginas = $totalEmpleado_db/5;
     $paginas = ceil($paginas);
 
 echo "
@@ -150,7 +150,7 @@ echo "
 
 
 
-    <form method='post' action='listaProductos.php'>
+    <form method='post' action='listaEmpleados.php'>
     
     <div class='productivity_area'>
         <div class='container'>
@@ -168,11 +168,15 @@ echo "
                     <table class='table-striped table table-bordered vertical' style='font-size:15px'>
                           <thead style='color: white; font-weight: normal; background-color: black;' >
                             <tr>
-                            <th  class='head'>Imagen</th>
-                            <th  class='head'>Código</th>
                             <th  class='head'>Nombre</th>
-                            <th  class='head'>Proveedor</th>
-                            <th  class='head'>Acción</th>
+                            <th  class='head'>Documento</th>
+                            <th  class='head'>Fecha de Ingreso</th>
+                            <th  class='head'>Salario</th>
+                            <th  class='head'>Email</th>
+                            <th  class='head'>Celular</th>
+                            <th  class='head'>Telefono</th>
+                            <th  class='head'></th>
+                            <th  class='head'>Acción  </th>
                             </tr>
                           </thead>";
                                 
@@ -185,14 +189,20 @@ echo "
 
                           <tbody style='border:1px solid #807e7e; background-color:#242424; color:#A1A6AB; text-align: left;'>
                             <tr>
-                              <td style='text-align: center;'>";echo $registros['imagen']."</td>
-                              <td style='text-align: center;'>";echo $registros['codigo']."</td>
                               <td style='text-align: center;'>";echo $registros['nombre']."</td>
-                              <td style='text-align: center;'>";echo $registros['nombreProveedor']."</td>
-                              
+                              <td style='text-align: center;'>";echo $registros['documento']."</td>
+                              <td style='text-align: center;'>";echo $registros['fecha_ingreso']."</td>
+                              <td style='text-align: center;'>";echo $registros['salario_basico']."</td>
+                              <td style='text-align: center;'>";echo $registros['email']."</td>
+                              <td style='text-align: center;'>";echo $registros['telefono']."</td>
+                              <td style='text-align: center;'>";echo $registros['celular']."</td>
+                              <td style='text-align: center;'>
+                               <span class='slider round'></span>
+                               </label>
+                              </td>
                               <td style='text-align: center;'>
                               
-                                <a class ='glyphicon glyphicon-edit btn btn-primary' href='GestionProducto.php?id=";echo $registros['codigo']."&proveedor=";echo $registros['nombreProveedor']."'></a>
+                                <a class ='glyphicon glyphicon-edit btn btn-primary' href='GestionEmpleado.php?id=";echo $registros['documento']."'></a>
                                 <i class='glyphicon glyphicon-trash btn btn-danger' title='Eliminar'></i>
                               </td>
                             </tr>";
@@ -205,7 +215,7 @@ echo "
                         <nav aria-label='Page navigation example'>
                             <ul class='pagination'>
                                 <li class='page-item "; echo $_GET['pagina']<=1 ? 'disabled' : ''; echo "'>
-                                    <a class='page-link' href='listaProductos.php?pagina=";echo $_GET['pagina']-1;echo "' aria-label='Anterior'>
+                                    <a class='page-link' href='listaEmpleados.php?pagina=";echo $_GET['pagina']-1;echo "' aria-label='Anterior'>
                                         <span aria-hidden='true'>&laquo;</span>
                                     </a>
                                 </li>";
@@ -214,12 +224,12 @@ echo "
 
                                 echo "
                                 <li class='page-item "; echo $_GET['pagina']==$i+1 ? 'active' : ''; echo "'>
-                                    <a class='page-link' href='listaProductos.php?pagina="; echo $i+1; echo "'>"; echo $i+1; echo "</a>
+                                    <a class='page-link' href='listaEmpleados.php?pagina="; echo $i+1; echo "'>"; echo $i+1; echo "</a>
                                 </li>";
                                 }
                                 echo "
                                 <li class='page-item "; echo $_GET['pagina']>=$paginas ? 'disabled' : ''; echo "'>
-                                    <a class='page-link' href='listaProductos.php?pagina=";echo $_GET['pagina']+1;echo "' aria-label='Siguiente'>
+                                    <a class='page-link' href='listaEmpleados.php?pagina=";echo $_GET['pagina']+1;echo "' aria-label='Siguiente'>
                                         <span aria-hidden='true'>&raquo;</span>
                                     </a>
                                 </li>

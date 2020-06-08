@@ -66,11 +66,7 @@
 
 
       function  listarUsuarios(){
-        //$esValido=false;
         
-        /* $usuario= $this->objUsuario->getNomUsuario();
-        $contraseña=$this->objUsuario->getContrasena();
-        $perfil=$this->objUsuario->getTipoUsuario(); */
         $objConexion = new ControlConexion();
         
         try{

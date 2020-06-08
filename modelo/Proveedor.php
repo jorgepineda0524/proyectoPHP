@@ -8,9 +8,10 @@
         var $imagen;
         var $fechaRegistro;
         var $fecharInactivo;
+        var $pagina;
         //var $idpersona;
         
-    function __construct($codigo,$nombre,$fechaRegistro,$tipoProveedor,$email,$telefono,$imagen){
+    function __construct($codigo,$nombre,$fechaRegistro,$tipoProveedor,$email,$telefono,$imagen,$pagina){
         $this->codigo=$codigo;
         $this->nombre=$nombre;
         $this->tipoProveedor=$tipoProveedor;  
@@ -19,7 +20,7 @@
         $this->fechaRegistro=$fechaRegistro;
         $this->imagen=$imagen;
         $this->fecharInactivo=null;
-        //$this->idpersona=$idpersona;
+        $this->pagina=$pagina;
      }
 
     function setCodigo($codigo) { $this->codigo = $codigo; }
@@ -45,6 +46,9 @@
 
     function setEmail($email) { $this->email = $email; }
     function getEmail() { return $this->email; }
+
+    function setPagina($pagina) { $this->pagina = $pagina; }
+    function getPagina() { return $this->pagina; }
 
     }
 ?>

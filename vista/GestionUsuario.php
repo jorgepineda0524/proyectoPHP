@@ -19,7 +19,7 @@ try{
     $boton=$_POST['btn'];
  
     if($boton=="Registrar"){
-    $objUsuario=new Usuario($nomUusario,/*$contra_cifrada*/$contrasena,$perfil);
+    $objUsuario=new Usuario($nomUusario,/*$contra_cifrada*/$contrasena,$perfil,"");
     $objCtrUsuario =new ControlUsuario($objUsuario);
     $objCtrUsuario->guardar();
     header('Location: usuarioGuardado.php');

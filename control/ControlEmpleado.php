@@ -78,5 +78,49 @@ class ControlEmpleado {
         $objConexion->cerrarBd();
         return $this->objEmpleado;
     }
+
+
+    function  listarEmpleados(){
+        
+        $objConexion = new ControlConexion();
+        
+        try{
+            $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
+            $comandoSql="SELECT * FROM EMPLEADO";
+            $recordSet=$objConexion->ejecutarSelect($comandoSql);
+            
+
+        } catch (Exception $e){
+          echo "ERROR ".$e->getMessage()."\n";
+          }
+          
+          $objConexion->cerrarBd();
+
+          return $recordSet;
+            
+  }
+
+  function consultarPagina(){
+  
+    
+    $pagina= $this->objEmpleado->getPagina();
+    $objConexion = new ControlConexion();
+    
+    try{
+        $objConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat']);
+        $comandoSql="SELECT nombre,documento,fecha_ingreso,salario_basico,email,telefono,celular FROM EMPLEADO LIMIT $pagina,5";
+        $recordSet=$objConexion->ejecutarSelect($comandoSql);
+        
+
+    } catch (Exception $e){
+      echo "ERROR ".$e->getMessage()."\n";
+      }
+      
+      $objConexion->cerrarBd();
+
+      return $recordSet;
+        
+  }
+
 }
 ?>

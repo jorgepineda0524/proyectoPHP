@@ -3,11 +3,13 @@
         var $codigo;
         var $nombre;
         var $imagen;
+        var $pagina;
 
-        function __construct($codigo,$nombre,$imagen){
+        function __construct($codigo,$nombre,$imagen,$pagina){
             $this->codigo= $codigo;
             $this->nombre = $nombre;	
             $this->imagen = $imagen;
+            $this->pagina = $pagina;
          }
     
         function getCodigo() {return $this->codigo;}
@@ -18,5 +20,8 @@
 
         function getImagen() {return $this->imagen;}
         function setImagen($imagen) {$this->imagen = $imagen;}
+
+        function setPagina($pagina) { $this->pagina = $pagina; }
+        function getPagina() { return $this->pagina; }
     }
 ?>

@@ -11,8 +11,9 @@
         var $email;
         var $telefono;
         var $celular;
+        var $pagina;
 
-        function __construct($codigo,$nombre,$fechaIngreso,$salarioBasico,$deduccion,$foto,$hojaDeVida,$email,$telefono,$celular)
+        function __construct($codigo,$nombre,$fechaIngreso,$salarioBasico,$deduccion,$foto,$hojaDeVida,$email,$telefono,$celular,$pagina)
         {
             $this->codigo=$codigo;
             $this->nombre=$nombre;
@@ -24,7 +25,8 @@
             $this->hojaDeVida=$hojaDeVida;
             $this->email=$email;
             $this->telefono=$telefono;
-            $this->celular=$celular;            
+            $this->celular=$celular;   
+            $this->pagina=$pagina;            
         }
 
         function setCodigo($codigo) { $this->codigo = $codigo; }
@@ -58,9 +60,10 @@
         function getTelefono() { return $this->telefono; }
         
         function setCelular($celular) { $this->celular = $celular; }
-        function getCelular() { return $this->celular
-            ; }
+        function getCelular() { return $this->celular; }
 
+        function setPagina($pagina) { $this->pagina = $pagina; }
+        function getPagina() { return $this->pagina; }
 
     }
 

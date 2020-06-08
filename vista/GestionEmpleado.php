@@ -12,6 +12,24 @@ if($_SESSION['per'] != "admin"){
     include('../control/ControlEmpleado.php');
     include('../control/ControlConexion.php');
 
+    $documentoId= $_GET['id'];
+
+    if($documentoId!=null){
+        $objEmpleado3=new Empleado($documentoId,"","","","","","","","","","");
+        $objCtrEmpleado3 =new ControlEmpleado($objEmpleado3);
+        $objEmpleado3=$objCtrEmpleado3->consultar();
+        $documento=$objEmpleado3->getCodigo();
+        $nombre=$objEmpleado3->getNombre();
+        $fechaIngreso=$objEmpleado3->getFechaIngreso();
+        $salario=$objEmpleado3->getSalarioBasico();
+        $deduccion=$objEmpleado3->getDeduccion();
+        $foto=$objEmpleado3->getFoto();
+        $hojaDeVida=$objEmpleado3->getHojaDeVida();
+        $email=$objEmpleado3->getEmail();
+        $telefono=$objEmpleado3->getTelefono();
+        $celular=$objEmpleado3->getCelular();
+    }
+
     try{
         $buscarDocumento=$_POST['txtDocumentoBusc'];
         $documento=$_POST['txtDocumento'];
@@ -33,16 +51,41 @@ if($_SESSION['per'] != "admin"){
         $celular=$_POST['txtCelular'];
     
         $boton=$_POST['btn'];
+
+
+        if($documentoId!=null){
+            $objEmpleado3=new Empleado($documentoId,"","","","","","","","","","");
+            $objCtrEmpleado3 =new ControlEmpleado($objEmpleado3);
+            $objEmpleado3=$objCtrEmpleado3->consultar();
+            $documento=$objEmpleado3->getCodigo();
+            $nombre=$objEmpleado3->getNombre();
+            $fechaIngreso=$objEmpleado3->getFechaIngreso();
+            $salario=$objEmpleado3->getSalarioBasico();
+            $deduccion=$objEmpleado3->getDeduccion();
+            $foto=$objEmpleado3->getFoto();
+            $hojaDeVida=$objEmpleado3->getHojaDeVida();
+            $email=$objEmpleado3->getEmail();
+            $telefono=$objEmpleado3->getTelefono();
+            $celular=$objEmpleado3->getCelular();
+        }
+
+        
+        if($boton=="lista de Empleados"){
+            header('Location: listaEmpleados.php');
+                  
+            }
      
         if($boton=="Registrar"){
-        $objEmpleado=new Empleado($documento,$nombre,$fecha_regis,$salario,$deduccion,$destinofoto,$destinoHV,$email,$tel,$celular);
+        $objEmpleado=new Empleado($documento,$nombre,$fecha_regis,$salario,$deduccion,$destinofoto,$destinoHV,$email,$tel,$celular,"");
         $objCtrEmpleado =new ControlEmpleado($objEmpleado);
         $objCtrEmpleado->guardar();
               
         }
+
+
         /*-----------------------Nuevo codigo-----------------------------------------*/
         if($boton=="Buscar"){
-            $objEmpleado=new Empleado($buscarDocumento,"","","","","","","","","");
+            $objEmpleado=new Empleado($buscarDocumento,"","","","","","","","","","");
             $objCtrEmpleado =new ControlEmpleado($objEmpleado);
             $objEmpleado=$objCtrEmpleado->consultar();
             $documento=$objEmpleado->getCodigo();
@@ -57,7 +100,7 @@ if($_SESSION['per'] != "admin"){
             $celular=$objEmpleado->getCelular();
         }
         if($boton=="Actualizar"){
-            $objEmpleado=new Empleado($documento,$nombre,$fecha_regis,$salario,$deduccion,$destinofoto,$destinoHV,$email,$tel,$celular);
+            $objEmpleado=new Empleado($documento,$nombre,$fecha_regis,$salario,$deduccion,$destinofoto,$destinoHV,$email,$tel,$celular,"");
             $objCtrEmpleado =new ControlEmpleado($objEmpleado);
             $objCtrEmpleado->modificar();
         }
@@ -173,9 +216,12 @@ echo "
 
                             <div class='tab-content' id='myTabContent'>
                                 <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
+                                
                                 <div style='width: 200px; float: right'>
+                                
                                 <input type='submit' class='btnRegister'  value='Buscar' name='btn' style='background: #2ad482'/>
                                 <input type='text' class='form-control' placeholder='Busqueda documento' name='txtDocumentoBusc'/>
+                                
                                 </div> 
                                     <h3 class='register-heading' style='color: black'>Datos Empleado</h3>
                                     <div class='row register-form'>
@@ -220,6 +266,7 @@ echo "
                                             </div>
                                             <input type='submit' class='btnRegister' value='Registrar' name='btn'/>
                                             <input type='submit' class='btnRegister' value='Actualizar' style='background: red' name='btn'/>
+                                            <input type='submit' class='btnRegister'  value='lista de Empleados' name='btn' style='background: #2ad482; width: 250px'/>
                                         </div>
                                     </div>
                                 </div>
